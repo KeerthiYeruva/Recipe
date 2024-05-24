@@ -3,6 +3,7 @@ import "./meals.scss";
 import Link from "next/link";
 
 import { getMeals } from "@/lib/meals";
+import { Suspense } from "react";
 
 const MealsPage = async () => {
   const meals = await getMeals();
@@ -23,6 +24,7 @@ const MealsPage = async () => {
         </p>
       </header>
       <main className="main">
+        <Suspense fallback={<p>Loading..!</p>}></Suspense>
         <MealsGrid meals={meals} />
       </main>
     </>
