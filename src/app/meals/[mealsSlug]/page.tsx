@@ -3,7 +3,13 @@ import "./meals-detail.scss";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-const MealsDetailPage = ({ params }) => {
+interface MealsDetailPageProps {
+  params: {
+    mealsSlug: string;
+  };
+}
+
+const MealsDetailPage = ({ params }: MealsDetailPageProps) => {
   const meal = getMeal(params.mealsSlug);
 
   if (!meal) {

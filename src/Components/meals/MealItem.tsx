@@ -4,21 +4,7 @@ import Image from "next/image";
 import "./meal-item.scss";
 import React from "react";
 
-interface MealItemProps {
-  title: string;
-  slug: any;
-  image: any;
-  summary: string;
-  creator: string;
-}
-
-const MealItem: React.FC<MealItemProps> = ({
-  title,
-  slug,
-  image,
-  summary,
-  creator,
-}) => {
+const MealItem: React.FC<Meal> = ({ title, slug, image, summary, creator }) => {
   return (
     <article className={"meal-m"}>
       <header>

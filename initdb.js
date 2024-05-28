@@ -52,74 +52,44 @@ const dummyMeals = [
     creator_email: "chefhealthy@example.com",
   },
   {
-    title: "Classic Mac n Cheese",
-    slug: "classic-mac-n-cheese",
-    image: "/images/macncheese.jpg",
+    title: "5-Minute Overnight Oats",
+    slug: "5-minute-overnight-oats",
+    image: "/images/overnight-oats.jpg",
     summary:
-      "Creamy and cheesy macaroni, a comforting classic that's always a crowd-pleaser.",
+      "Overnight oats with berries, banana, and almond butter. A healthy, easy breakfast you can make in 5 minutes and enjoy on the go!",
     instructions: `
-      1. Cook the macaroni:
-         Boil macaroni according to package instructions until al dente.
-
-      2. Prepare cheese sauce:
-         In a saucepan, melt butter, add flour, and gradually whisk in milk until thickened. Stir in grated cheese until melted.
-
-      3. Combine:
-         Mix the cheese sauce with the drained macaroni.
-
-      4. Bake:
-         Transfer to a baking dish, top with breadcrumbs, and bake until golden.
-
-      5. Serve:
-         Serve hot, garnished with parsley if desired.
-    `,
-    creator: "Laura Smith",
-    creator_email: "laurasmith@example.com",
+      1. In the evening, mix oats, chia seeds, yogurt, and water in an airtight container (a jar with a lid works!) and leave it in the fridge.
+      2. In the morning, top with banana, walnuts, berries of your choice, and almond or peanut butter. Enjoy immediately or on the go.`,
+    creator: "Half-Human, Half-Mom",
+    creator_email: "info@hh-hm.com",
   },
   {
-    title: "Authentic Pizza",
-    slug: "authentic-pizza",
-    image: "/images/pizza.jpg",
+    title: "Healthiest Chocolate Ice Cream 🍫🍫",
+    slug: "healthiest-chocolate-ice-cream",
+    image: "/images/chocolate-ice-cream.jpg",
     summary:
-      "Hand-tossed pizza with a tangy tomato sauce, fresh toppings, and melted cheese.",
+      "Delicious and guilt-free chocolate ice cream made with wholesome ingredients.",
     instructions: `
-      1. Prepare the dough:
-         Knead pizza dough and let it rise until doubled in size.
-
-      2. Shape and add toppings:
-         Roll out the dough, spread tomato sauce, and add your favorite toppings and cheese.
-
-      3. Bake the pizza:
-         Bake in a preheated oven at 220°C for about 15-20 minutes.
-
-      4. Serve:
-         Slice hot and enjoy with a sprinkle of basil leaves.
-    `,
-    creator: "Mario Rossi",
-    creator_email: "mariorossi@example.com",
+      1. Place Makhana, soaked almonds, dates, milk, and sugar-free dark chocolate into a food processor or high-speed blender.
+      2. Pulse/process until smooth and creamy. You may need to turn off the motor and stir the mixture a couple of times while processing.
+      3. Add in chocolate chips (if using). Spoon ice cream into a bowl and enjoy! If you want to be able to scoop the ice cream, you can place it in the freezer for 6-8 hours so it’s solid enough to scoop.`,
+    creator: "Chef Healthy",
+    creator_email: "chefhealthy@example.com",
   },
   {
-    title: "Wiener Schnitzel",
-    slug: "wiener-schnitzel",
-    image: "/images/schnitzel.jpg",
+    title: "Zero Cream Mango Mousse",
+    slug: "zero-cream-mango-mousse",
+    image: "/images/mango-mousse.jpg",
     summary:
-      "Crispy, golden-brown breaded veal cutlet, a classic Austrian dish.",
+      "A delightful and healthy mango mousse recipe made without cream, perfect for a guilt-free indulgence.",
     instructions: `
-      1. Prepare the veal:
-         Pound veal cutlets to an even thickness.
-
-      2. Bread the veal:
-         Coat each cutlet in flour, dip in beaten eggs, and then in breadcrumbs.
-
-      3. Fry the schnitzel:
-      Heat oil in a pan and fry each schnitzel until golden brown on both sides.
-
-      4. Serve:
-      Serve hot with a slice of lemon and a side of potato salad or greens.
- `,
-    creator: "Franz Huber",
-    creator_email: "franzhuber@example.com",
+      1. Blend together 2 ripe mangoes (reserving a few pieces for garnish), 200 grams of fresh paneer, 1 tsp of vanilla extract, and ¼ cup of jaggery until smooth.
+      2. Transfer the mixture to a bowl and let it set in the refrigerator for at least 3 hours.
+      3. Garnish with pistachio and mango pieces before serving and enjoy!`,
+    creator: "bowl2soul",
+    creator_email: "bowl2soul@example.com",
   },
+
   {
     title: "Fresh Tomato Salad",
     slug: "fresh-tomato-salad",
@@ -160,9 +130,10 @@ db.prepare(
 ).run();
 
 async function initData() {
-  const stmt = db.prepare(`
-      INSERT INTO meals VALUES (
-         null,
+  const count = db.prepare("SELECT COUNT(*) as count FROM meals").get().count;
+  if (count === 0) {
+    const stmt = db.prepare(`
+      INSERT INTO meals (slug, title, image, summary, instructions, creator, creator_email) VALUES (
          @slug,
          @title,
          @image,
@@ -171,11 +142,19 @@ async function initData() {
          @creator,
          @creator_email
       )
-   `);
+    `);
 
-  for (const meal of dummyMeals) {
-    stmt.run(meal);
+    for (const meal of dummyMeals) {
+      try {
+        stmt.run(meal);
+      } catch (error) {
+        console.error("Error inserting meal:", meal, error);
+      }
+    }
+    console.log("Dummy data inserted successfully.");
+  } else {
+    console.log("Meals table already populated.");
   }
 }
 
-initData();
+initData().catch(console.error);
