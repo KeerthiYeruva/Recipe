@@ -64,7 +64,7 @@ const dummyMeals = [
     creator_email: "info@hh-hm.com",
   },
   {
-    title: "Healthiest Chocolate Ice Cream 🍫🍫",
+    title: "Healthiest Chocolate Ice Cream",
     slug: "healthiest-chocolate-ice-cream",
     image: "/images/chocolate-ice-cream.jpg",
     summary:
