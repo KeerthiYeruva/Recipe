@@ -1,4 +1,4 @@
-import MealsGrid from "@/Components/meals/MealsGrid";
+import MealsGrid from "@/Components/meals/MealsGrid/MealsGrid";
 import "./meals.scss";
 import Link from "next/link";
 

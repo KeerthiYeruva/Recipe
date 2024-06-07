@@ -1,5 +1,5 @@
 import React from "react";
-import MealItem from "./MealItem";
+import MealItem from "../MealItem";
 import "./meals-grid.scss";
 
 // Define the props for MealsGrid
