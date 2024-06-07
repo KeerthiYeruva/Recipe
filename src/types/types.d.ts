@@ -9,10 +9,17 @@ declare global {
     id: number;
     title: string;
     slug: string;
-    image: string;
+    image: Image;
     summary: string;
     instructions: string;
     creator: string;
     creator_email: string;
+  }
+
+  interface Image {
+    size: number;
+    type: string;
+    name: string;
+    lastModified: number;
   }
 }

@@ -1,5 +1,7 @@
-import ImagePicker from "../ImagePicker/ImagePicker";
+import shareMeal from "@/lib/actions";
+import ImagePicker from "../../../Components/meals/ImagePicker/ImagePicker";
 import "./share-meal.scss";
+import { MealsFormSubmit } from "@/Components/meals/FormSubmit";
 
 export default function ShareMealPage() {
   return (
@@ -11,7 +13,7 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={"main-sm"}>
-        <form className={"form"}>
+        <form className={"form"} action={shareMeal}>
           <div className={"row"}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -39,9 +41,9 @@ export default function ShareMealPage() {
               required
             ></textarea>
           </p>
-          <ImagePicker label="" name="" />
+          <ImagePicker label="Image" name="image" />
           <p className={"actions"}>
-            <button type="submit">Share Meal</button>
+            <MealsFormSubmit />
           </p>
         </form>
       </main>
