@@ -14,6 +14,7 @@ const MealsDetailPage = ({ params }: MealsDetailPageProps) => {
 
   if (!meal) {
     notFound();
+    return null; // Ensure the function exits if notFound is called
   }
 
   meal.instructions = meal.instructions.replace(/\n/g, "<br/>");
@@ -22,7 +23,11 @@ const MealsDetailPage = ({ params }: MealsDetailPageProps) => {
     <>
       <header className="header-md">
         <div className="image-md">
-          <Image src={meal.image} fill alt={meal.title} />
+          {meal.image && typeof meal.image === "string" ? (
+            <Image src={meal.image} fill alt={meal.title} />
+          ) : (
+            <p>No image available</p>
+          )}
         </div>
         <div className="headerText">
           <h1>{meal.title}</h1>

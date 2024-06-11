@@ -10,11 +10,7 @@ interface ImagePickerProps {
 
 const ImagePicker: React.FC<ImagePickerProps> = ({ label, name }) => {
   const [pickedImage, setPickedImage] = useState<string | null>(null);
-  const ImageInput = useRef<HTMLInputElement>(null);
-
-  const HandleImage = () => {
-    ImageInput.current?.click();
-  };
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -22,11 +18,12 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ label, name }) => {
       setPickedImage(null);
       return;
     }
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setPickedImage(fileReader.result as string);
-    };
-    fileReader.readAsDataURL(file);
+    const objectUrl = URL.createObjectURL(file);
+    setPickedImage(objectUrl);
+  };
+
+  const triggerImageUpload = () => {
+    imageInputRef.current?.click();
   };
 
   return (
@@ -37,7 +34,9 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ label, name }) => {
           {!pickedImage ? (
             <p>No image to preview</p>
           ) : (
-            <Image src={pickedImage} alt="image by user" layout="fill" />
+            <div className="image-container">
+              <Image src={pickedImage} alt="image by user" fill />
+            </div>
           )}
         </div>
         <input
@@ -46,11 +45,12 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ label, name }) => {
           id={name}
           accept="image/png, image/jpeg"
           name={name}
-          ref={ImageInput}
+          ref={imageInputRef}
           onChange={handleImageChange}
+          style={{ position: "absolute", left: "-9999px" }} // Move off-screen
           required
         />
-        <button className="button" type="button" onClick={HandleImage}>
+        <button className="button" type="button" onClick={triggerImageUpload}>
           Pick an Image
         </button>
       </div>

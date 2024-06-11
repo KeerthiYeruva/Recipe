@@ -9,7 +9,7 @@ declare global {
     id: number;
     title: string;
     slug: string;
-    image: Image;
+    image: string;
     summary: string;
     instructions: string;
     creator: string;
