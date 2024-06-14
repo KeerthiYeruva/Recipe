@@ -39,7 +39,6 @@ To get started with the project, follow these steps:
 
     Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the application by modifying `app/page.tsx`. The page will automatically update as you make changes.
 
 ## Features
 
@@ -56,14 +55,3 @@ To deepen your understanding of Next.js and its capabilities, explore the follow
 - [Learn Next.js](https://nextjs.org/learn) - Interactive Next.js tutorial.
 - Check out the [Next.js GitHub repository](https://github.com/vercel/next.js/) for more insights and to contribute.
 
-## Deployment
-
-Deploying the project is straightforward with the Vercel Platform, created by the team behind Next.js. Follow the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for detailed instructions.
-
-## Contributing
-
-Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
