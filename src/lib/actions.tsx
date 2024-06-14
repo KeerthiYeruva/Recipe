@@ -1,7 +1,7 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
+import { revalidatePath } from "next/cache";
 
 // Simple email validation function
 const validateEmail = (email: string): boolean => {
@@ -45,8 +45,10 @@ const shareMeal = async (prevstate: any, formData: any) => {
 
   try {
     await saveMeal(meal);
+    await revalidatePath("/meals");
     return { status: "success" };
   } catch (error) {
+    console.error(error);
     return {
       status: "error",
       errors: ["An unexpected error occurred while saving the meal."],
