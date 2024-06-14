@@ -2,6 +2,7 @@ import { getMeal } from "@/lib/meals";
 import "./meals-detail.scss";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { title } from "process";
 
 interface MealsDetailPageProps {
   params: {
@@ -9,6 +10,16 @@ interface MealsDetailPageProps {
   };
 }
 
+export const generateMetaData = async ({ params }: MealsDetailPageProps) => {
+  const meal = getMeal(params.mealsSlug);
+  if (!meal) {
+    notFound();
+  }
+  return {
+    title: meal?.title,
+    description: meal?.summary,
+  };
+};
 const MealsDetailPage = ({ params }: MealsDetailPageProps) => {
   const meal = getMeal(params.mealsSlug);
 
