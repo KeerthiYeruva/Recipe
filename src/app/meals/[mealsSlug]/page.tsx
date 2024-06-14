@@ -1,8 +1,8 @@
-import { getMeal } from "@/lib/meals";
-import "./meals-detail.scss";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { title } from "process";
+import { getMeal } from "@/lib/meals";
+import "./meals-detail.scss";
 
 interface MealsDetailPageProps {
   params: {
@@ -10,18 +10,26 @@ interface MealsDetailPageProps {
   };
 }
 
-export const generateMetaData = async ({ params }: MealsDetailPageProps) => {
-  const meal = getMeal(params.mealsSlug);
+// Ensure that getMeal is async
+export const generateMetadata = async ({
+  params,
+}: MealsDetailPageProps): Promise<Metadata> => {
+  const meal = await getMeal(params.mealsSlug); // Ensure getMeal is awaited
   if (!meal) {
     notFound();
+    return {
+      title: "Meal not found",
+      description: "The requested meal could not be found.",
+    };
   }
   return {
-    title: meal?.title,
-    description: meal?.summary,
+    title: meal.title,
+    description: meal.summary,
   };
 };
-const MealsDetailPage = ({ params }: MealsDetailPageProps) => {
-  const meal = getMeal(params.mealsSlug);
+
+const MealsDetailPage = async ({ params }: MealsDetailPageProps) => {
+  const meal = await getMeal(params.mealsSlug); // Ensure getMeal is awaited
 
   if (!meal) {
     notFound();
