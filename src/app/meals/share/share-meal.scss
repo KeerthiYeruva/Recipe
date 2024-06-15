@@ -3,24 +3,31 @@
   margin: 3rem auto 5rem auto;
   width: 90%;
   max-width: 75rem;
-  color: #ddd6cb;
+  color: #2d3436; /* Dark Gray */
   font-size: 1.5rem;
   h1 {
     font-family: "Montserrat", sans-serif;
   }
 }
+
 .highlight {
-  background: linear-gradient(90deg, #f9572a, #ff8a05);
+  background: linear-gradient(
+    90deg,
+    #27ae60,
+    #2ecc71
+  ); /* Green to Light Green */
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .main-sm {
   width: 90%;
   max-width: 75rem;
   margin: 3rem auto;
-  color: white;
+  color: #2d3436; /* Dark Gray */
 }
+
 .form {
   max-width: 50rem;
   label {
@@ -29,27 +36,30 @@
     font-size: 1rem;
     font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
-    color: #b3aea5;
+    color: #27ae60; /* Green */
     font-weight: bold;
   }
 }
+
 .form input,
 .form textarea {
   display: block;
   width: 100%;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  border: 1px solid #454952;
-  background: #1c2027;
+  border: 1px solid #27ae60; /* Green */
+  background: #f4f6f7; /* Very Light Gray */
   font-size: 1.25rem;
   font-family: "Montserrat", sans-serif;
-  color: #ddd6cb;
+  color: #2d3436; /* Dark Gray */
 }
+
 .form input:focus,
 .form textarea:focus {
-  outline-color: #f99f2a;
-  background-color: #1f252d;
+  outline-color: #2ecc71; /* Light Green */
+  background-color: #ffffff; /* White */
 }
+
 .row {
   display: flex;
   gap: 1rem;
@@ -57,12 +67,17 @@
     width: 100%;
   }
 }
+
 .actions {
   text-align: right;
   button {
     border: 0;
     padding: 0.75rem 2rem;
-    background: linear-gradient(90deg, #f9572a, #ff9b05);
+    background: linear-gradient(
+      90deg,
+      #27ae60,
+      #2ecc71
+    ); /* Green to Light Green */
     border: none;
     color: #ffffff;
     border-radius: 2px;
@@ -72,10 +87,12 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
 }
+
 .actions button:hover,
 .actions button:focus {
-  background: linear-gradient(90deg, #fd4715, #f9b241);
+  background: linear-gradient(90deg, #1abc9c, #16a085); /* Teal shades */
 }
+
 .actions button:disabled,
 .actions button:hover:disabled,
 .actions button:focus:disabled {

@@ -3,7 +3,7 @@
   margin: 3rem auto 5rem auto;
   width: 90%;
   max-width: 75rem;
-  color: #ddd6cb;
+  color: #2d3436; /* Dark Gray */
   font-size: 1.5rem;
   text-align: center;
 
@@ -13,7 +13,11 @@
 }
 
 .highlight-c {
-  background: linear-gradient(90deg, #f9572a, #ff8a05);
+  background: linear-gradient(
+    90deg,
+    #27ae60,
+    #2ecc71
+  ); /* Green to Light Green */
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -29,7 +33,7 @@
     font-family: "Montserrat", sans-serif;
     font-size: 2rem;
     margin-bottom: 3rem;
-    color: #ddd6cb;
+    color: #2d3436; /* Dark Gray */
   }
 }
 
@@ -56,6 +60,6 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin: 0;
-    color: #ddd6cb;
+    color: #2d3436; /* Dark Gray */
   }
 }

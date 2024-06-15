@@ -4,6 +4,7 @@
   gap: 3rem;
   margin: auto;
   max-width: 80rem;
+
   .image-md {
     position: relative;
     width: 30rem;
@@ -16,9 +17,10 @@
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
     animation: fade-slide-in-from-left 1s ease-out forwards;
   }
+
   .headerText {
     padding: 0.5rem 1rem 0 1rem;
-    color: #ddd6cb;
+    color: #2d3436; /* Dark Gray */
     max-width: 40rem;
     animation: fade-slide-in-from-right 1s ease-out forwards;
 
@@ -38,10 +40,15 @@
 
 .creator-md {
   font-size: 1.5rem;
-  color: #cfa69b;
+  color: #16a085; /* Teal */
   font-style: italic;
+
   a {
-    background: linear-gradient(90deg, #f9572a, #ff8a05);
+    background: linear-gradient(
+      90deg,
+      #27ae60,
+      #2ecc71
+    ); /* Green to Light Green */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -49,19 +56,23 @@
 
   a:hover,
   a:active {
-    background: linear-gradient(90deg, #f9572a, #ff8a05);
+    background: linear-gradient(
+      90deg,
+      #27ae60,
+      #2ecc71
+    ); /* Green to Light Green */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 18px rgba(248, 190, 42, 0.8);
+    text-shadow: 0 0 18px rgba(39, 174, 96, 0.8);
   }
 }
 
 .instructions-md {
   font-size: 1.25rem;
   line-height: 1.5;
-  background-color: #6e6464;
-  color: #13120f;
+  background-color: #f4f6f7; /* Very Light Gray */
+  color: #2d3436; /* Dark Gray */
   border-radius: 8px;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
   padding: 2rem;
@@ -73,7 +84,7 @@
 .loading {
   font-size: 3rem;
   text-align: center;
-  color: #ddd6cb;
+  color: #2d3436; /* Dark Gray */
   font-weight: bold;
   animation: flash 1s ease-in-out infinite alternate;
 }

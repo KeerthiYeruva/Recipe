@@ -12,7 +12,7 @@
 }
 
 .hero {
-  color: #ddd6cb;
+  color: #2d3436; /* Dark Gray */
   font-size: 1.5rem;
 }
 
@@ -22,7 +22,11 @@
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #f9572a, #ffc905);
+  background: linear-gradient(
+    90deg,
+    #27ae60,
+    #2ecc71
+  ); /* Green to Light Green */
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -39,7 +43,11 @@
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  background: linear-gradient(90deg, #f9572a, #ff9b05);
+  background: linear-gradient(
+    90deg,
+    #27ae60,
+    #2ecc71
+  ); /* Green to Light Green */
   color: #ffffff;
   font-weight: bold;
   text-decoration: none;
@@ -47,26 +55,26 @@
 
 .cta a:hover,
 .cta a:active {
-  background: linear-gradient(90deg, #fd4715, #f9b241);
+  background: linear-gradient(90deg, #1abc9c, #16a085); /* Teal shades */
 }
 
 .cta a:first-child {
   background: transparent;
   font-weight: normal;
-  color: #ff9b05;
+  color: #27ae60; /* Green */
   padding-left: 0;
 }
 
 .cta a:first-child:hover,
 .cta a:first-child:active {
   background: transparent;
-  color: #f9b241;
+  color: #2ecc71; /* Light Green */
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  color: #ddd6cb;
+  color: #2d3436; /* Dark Gray */
   font-size: 1.5rem;
   max-width: 50rem;
   width: 90%;

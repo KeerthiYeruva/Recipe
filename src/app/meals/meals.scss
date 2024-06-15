@@ -3,7 +3,7 @@
   margin: 3rem auto 5rem auto;
   width: 90%;
   max-width: 75rem;
-  color: #ddd6cb;
+  color: #2d3436; /* Dark Gray */
   font-size: 1.5rem;
 
   h1 {
@@ -16,7 +16,11 @@
 }
 
 .highlight-m {
-  background: linear-gradient(90deg, #f9572a, #ff8a05);
+  background: linear-gradient(
+    90deg,
+    #27ae60,
+    #2ecc71
+  ); /* Green to Light Green */
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -27,7 +31,11 @@
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  background: linear-gradient(90deg, #f9572a, #ff9b05);
+  background: linear-gradient(
+    90deg,
+    #27ae60,
+    #2ecc71
+  ); /* Green to Light Green */
   color: #ffffff;
   font-weight: bold;
   text-decoration: none;
@@ -43,7 +51,7 @@
     color: #e9e9e9;
   }
   50% {
-    color: #b89b84;
+    color: #27ae60; /* Green */
   }
   100% {
     color: #e9e9e9;
