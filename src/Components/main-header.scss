@@ -50,7 +50,7 @@
 
 .nav a:hover,
 .nav a:active {
-  background: linear-gradient(90deg, var(--accent-fourth), var(--accent-gold));
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -58,7 +58,7 @@
 }
 
 .active {
-  background: linear-gradient(90deg, var(--accent-fourth), var(--accent-gold));
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
