@@ -16,6 +16,7 @@
   margin: 0;
   padding: 0;
   display: flex;
+  align-items: center;
   gap: 1.5rem;
   /* font-family: 'Montserrat', sans-serif; */
   font-size: 1.25rem;
@@ -42,6 +43,9 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  height: 2rem;
 }
 
 .nav a:hover,
@@ -64,6 +68,7 @@
   list-style: none;
   display: flex;
   align-items: center;
+  height: 2.5rem;
 }
 
 .logo {
