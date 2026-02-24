@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import MainHeader from "@/Components/main-header";
-import { ThemeProvider } from "@/context/ThemeContext";
+import ClientWrapper from "@/Components/ClientWrapper/ClientWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider>
+        <ClientWrapper>
           <a href="#main-content" className="skip-to-main">
             Skip to main content
           </a>
@@ -33,7 +33,7 @@ export default function RootLayout({
           <main id="main-content">
             {children}
           </main>
-        </ThemeProvider>
+        </ClientWrapper>
       </body>
     </html>
   );
