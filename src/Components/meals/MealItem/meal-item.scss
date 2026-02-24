@@ -81,7 +81,7 @@
 
   a:hover,
   a:active {
-    background: linear-gradient(90deg, #fd4715, var(--accent-gold));
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-gold));
     box-shadow: 0 0 12px rgba(242, 100, 18, 0.8);
   }
 }
