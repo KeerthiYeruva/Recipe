@@ -10,16 +10,30 @@ interface MealsDetailPageProps {
   }>;
 }
 
-// Function to extract ingredients from instructions
+// Function to extract ingredient names (without quantities)
 function extractIngredients(instructions: string): string[] {
-  const ingredientsMatch = instructions.match(/ingredients?:\s*([^\n]+(?:\n(?![\w\s]*:)[^\n]*)*)/i);
+  // Only extract from a dedicated "Ingredients:" section
+  const ingredientsMatch = instructions.match(/ingredients?:\s*\n([\s\S]*?)(?:\n\d+\.|$)/i);
+  
   if (!ingredientsMatch) return [];
   
   const ingredientsText = ingredientsMatch[1];
-  return ingredientsText
-    .split(/[,\n\-•]/)
-    .map(item => item.trim())
-    .filter(item => item.length > 0 && !item.includes('<'));
+  const ingredients = ingredientsText
+    .split('\n')
+    .map(line => {
+      // Remove leading bullets, dashes, numbers
+      let item = line.replace(/^[\s\-•*\d.]+\s*/, '').trim();
+      
+      // Remove quantities (e.g., "1 cup", "half", "2 tbsp", "3 oz")
+      item = item.replace(/^\d+(?:\.?\d+)?\s*(cup|tsp|tbsp|oz|g|kg|ml|piece|pinch|dash|can|bottle|jar)s?\s+of\s+/i, '');
+      item = item.replace(/^\d+(?:\.?\d+)?\s*(cup|tsp|tbsp|oz|g|kg|ml|piece|pinch|dash|can|bottle|jar)s?\s+/i, '');
+      item = item.replace(/^(half|one|two|three|four|five|a bunch of|a few)\s+/i, '');
+      
+      return item.trim();
+    })
+    .filter(item => item.length > 2 && !item.match(/^\d+\./) && !item.includes(':'));
+  
+  return ingredients;
 }
 
 const MealsDetailPage = async ({ params }: MealsDetailPageProps) => {
