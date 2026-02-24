@@ -39,13 +39,19 @@ const ImageSlideshow = () => {
   }, []);
 
   return (
-    <div className="slideshow-i">
+    <div
+      className="slideshow-i"
+      role="region"
+      aria-label="Featured recipes carousel"
+      aria-live="polite"
+    >
       {images.map((image, index) => (
         <Image
           key={index}
           src={image.img}
           className={index === currentImageIndex ? "active" : ""}
           alt={image.alt}
+          aria-hidden={index !== currentImageIndex}
           fill
         />
       ))}

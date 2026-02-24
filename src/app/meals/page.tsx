@@ -20,13 +20,15 @@ const MealsPage = async () => {
           fun!
         </p>
         <p className="cta">
-          <Link href="/meals/share">Share your favorite Recipe</Link>
+          <Link href="/meals/share" aria-label="Share your favorite recipe with our community">
+            Share your favorite Recipe
+          </Link>
         </p>
       </header>
-      <main className="main">
-        <Suspense fallback={<p>Loading..!</p>}></Suspense>
+      <section className="main" aria-label="Recipes">
+        <Suspense fallback={<p>Loading recipes...</p>}></Suspense>
         <MealsGrid meals={meals} />
-      </main>
+      </section>
     </>
   );
 };

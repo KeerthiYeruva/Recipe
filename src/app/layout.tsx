@@ -24,8 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
         <MainHeader></MainHeader>
-        {children}
+        <main id="main-content">
+          {children}
+        </main>
       </body>
     </html>
   );

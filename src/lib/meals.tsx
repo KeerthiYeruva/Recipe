@@ -7,7 +7,6 @@ const db = sql("meals.db");
 
 // Function to get all meals
 export async function getMeals(): Promise<Meal[]> {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   return db.prepare("SELECT * FROM meals").all() as Meal[];
 }
 

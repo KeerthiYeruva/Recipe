@@ -24,23 +24,28 @@ const MealsDetailPage = ({ params }: MealsDetailPageProps) => {
       <header className="header-md">
         <div className="image-md">
           {meal.image && typeof meal.image === "string" ? (
-            <Image src={meal.image} fill alt={meal.title} />
+            <Image 
+              src={meal.image} 
+              fill 
+              alt={`${meal.title} - a delicious recipe`}
+            />
           ) : (
             <p>No image available</p>
           )}
         </div>
         <div className="headerText">
           <h1>{meal.title}</h1>
-          <p className="creator-md">by {meal.creator}</p>
+          <p className="creator-md">by <strong>{meal.creator}</strong></p>
           <p className="summary">{meal.summary}</p>
         </div>
       </header>
-      <main>
+      <section aria-label="Recipe instructions">
+        <h2 className="sr-only">Instructions</h2>
         <p
           className="instructions-md"
           dangerouslySetInnerHTML={{ __html: meal.instructions }}
         ></p>
-      </main>
+      </section>
     </>
   );
 };

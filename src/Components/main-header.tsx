@@ -6,12 +6,12 @@ import "./main-header.scss";
 
 const MainHeader = () => {
   return (
-    <header className="header">
-      <Link className="logo" href={"/"}>
-        <Image src={Logo} alt="logo" priority />
+    <header className="header" role="banner">
+      <Link className="logo" href="/" aria-label="Recipe App Home">
+        <Image src={Logo} alt="" priority />
         Recipes
       </Link>
-      <nav className="nav">
+      <nav className="nav" aria-label="Main Navigation">
         <ul>
           <li>
             <Link href="/meals">Meals</Link>
