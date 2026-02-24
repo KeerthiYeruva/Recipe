@@ -11,26 +11,28 @@
   .button {
     border: 0;
     padding: 0.5rem 1.5rem;
-    background: #a4abb9;
+    background: var(--accent-light-gray);
     border-radius: 2px;
     cursor: pointer;
     font: inherit;
+    transition: background 0.3s ease;
   }
 }
 .picker .button:hover,
 .picker .button:focus {
-  background: #b3b9c6;
+  background: var(--accent-lighter-gray);
 }
 .preview {
   width: 10rem;
   height: 10rem;
-  border: 2px solid #a4abb9;
+  border: 2px solid var(--accent-light-gray);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #a4abb9;
+  color: var(--accent-light-gray);
   position: relative;
+  transition: all 0.3s ease;
   .image-container {
     position: relative;
     width: 100%;

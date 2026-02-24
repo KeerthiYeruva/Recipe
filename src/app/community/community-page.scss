@@ -3,9 +3,10 @@
   margin: 3rem auto 5rem auto;
   width: 90%;
   max-width: 75rem;
-  color: #ddd6cb;
+  color: var(--text-primary);
   font-size: 1.5rem;
   text-align: center;
+  transition: color 0.3s ease;
 
   h1 {
     font-family: "Montserrat", sans-serif;
@@ -29,7 +30,7 @@
 }
 
 .highlight-c {
-  background: linear-gradient(90deg, #f9572a, #ff8a05);
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-fourth));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -45,7 +46,8 @@
     font-family: "Montserrat", sans-serif;
     font-size: 2rem;
     margin-bottom: 3rem;
-    color: #ddd6cb;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
   }
 }
 
@@ -86,7 +88,8 @@
     font-size: 1.5rem;
     font-weight: bold;
     margin: 0;
-    color: #ddd6cb;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
   }
 }
 

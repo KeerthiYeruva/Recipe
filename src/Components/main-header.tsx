@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Logo from "@/assets/logo.jpg";
+import ThemeToggle from "./ThemeToggle/ThemeToggle";
 import "./main-header.scss";
 
 const MainHeader = () => {
@@ -20,6 +21,9 @@ const MainHeader = () => {
             <Link href="/community">Community</Link>
           </li>
         </ul>
+        <li className="theme-toggle-wrapper">
+          <ThemeToggle />
+        </li>
       </nav>
     </header>
   );

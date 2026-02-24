@@ -3,8 +3,9 @@
   margin: 3rem auto 5rem auto;
   width: 90%;
   max-width: 75rem;
-  color: #ddd6cb;
+  color: var(--text-primary);
   font-size: 1.5rem;
+  transition: color 0.3s ease;
   h1 {
     font-family: "Montserrat", sans-serif;
   }
@@ -26,7 +27,7 @@
   }
 }
 .highlight {
-  background: linear-gradient(90deg, #f9572a, #ff8a05);
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-fourth));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -35,7 +36,8 @@
   width: 90%;
   max-width: 75rem;
   margin: 3rem auto;
-  color: white;
+  color: var(--text-light);
+  transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -57,8 +59,9 @@
     font-size: 1rem;
     font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
-    color: #b3aea5;
+    color: var(--accent-light-gray);
     font-weight: bold;
+    transition: color 0.3s ease;
   }
 }
 .form input,
@@ -67,16 +70,17 @@
   width: 100%;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  border: 1px solid #454952;
-  background: #1c2027;
+  border: 1px solid var(--form-border);
+  background: var(--form-bg);
   font-size: 1.25rem;
   font-family: "Montserrat", sans-serif;
-  color: #ddd6cb;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
 }
 .form input:focus,
 .form textarea:focus {
-  outline-color: #f99f2a;
-  background-color: #1f252d;
+  outline-color: var(--form-focus);
+  background-color: var(--form-input);
 }
 .row {
   display: flex;
@@ -101,24 +105,25 @@
   button {
     border: 0;
     padding: 0.75rem 2rem;
-    background: linear-gradient(90deg, #f9572a, #ff9b05);
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
     border: none;
-    color: #ffffff;
+    color: var(--text-light);
     border-radius: 2px;
     cursor: pointer;
     font: inherit;
     font-size: 1.25rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
   }
 }
 .actions button:hover,
 .actions button:focus {
-  background: linear-gradient(90deg, #fd4715, #f9b241);
+  background: linear-gradient(90deg, #fd4715, var(--accent-gold));
 }
 .actions button:disabled,
 .actions button:hover:disabled,
 .actions button:focus:disabled {
-  background: #ccc;
-  color: #979797;
+  background: var(--button-disabled-bg);
+  color: var(--button-disabled-text);
   cursor: not-allowed;
 }

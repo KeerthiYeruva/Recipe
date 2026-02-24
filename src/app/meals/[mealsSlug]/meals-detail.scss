@@ -18,9 +18,10 @@
   }
   .headerText {
     padding: 0.5rem 1rem 0 1rem;
-    color: #ddd6cb;
+    color: var(--text-primary);
     max-width: 40rem;
     animation: fade-slide-in-from-right 1s ease-out forwards;
+    transition: color 0.3s ease;
 
     h1 {
       margin: 0;
@@ -81,18 +82,20 @@
 
 .creator-md {
   font-size: 1.5rem;
-  color: #cfa69b;
+  color: var(--accent-mauve);
   font-style: italic;
+  transition: color 0.3s ease;
   a {
-    background: linear-gradient(90deg, #f9572a, #ff8a05);
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-fourth));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
   }
 
   a:hover,
   a:active {
-    background: linear-gradient(90deg, #f9572a, #ff8a05);
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-fourth));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -103,7 +106,7 @@
 .instructions-md {
   font-size: 1.25rem;
   line-height: 1.5;
-  background-color: #6e6464;
+  background-color: var(--accent-dark-gray);
   color: #13120f;
   border-radius: 8px;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
@@ -111,6 +114,7 @@
   max-width: 60rem;
   margin: 2rem auto;
   animation: fade-slide-in-from-bottom 1s ease-out forwards;
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -132,9 +136,10 @@
 .loading {
   font-size: 3rem;
   text-align: center;
-  color: #ddd6cb;
+  color: var(--text-primary);
   font-weight: bold;
   animation: flash 1s ease-in-out infinite alternate;
+  transition: color 0.3s ease;
 }
 
 @keyframes fade-slide-in-from-left {

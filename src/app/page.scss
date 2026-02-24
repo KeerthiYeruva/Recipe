@@ -40,8 +40,9 @@
 }
 
 .hero {
-  color: #ddd6cb;
+  color: var(--text-primary);
   font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
 .hero h1 {
@@ -50,7 +51,7 @@
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #f9572a, #ffc905);
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -102,39 +103,41 @@
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  background: linear-gradient(90deg, #f9572a, #ff9b05);
-  color: #ffffff;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  color: var(--text-light);
   font-weight: bold;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .cta a:hover,
 .cta a:active {
-  background: linear-gradient(90deg, #fd4715, #f9b241);
+  background: linear-gradient(90deg, #fd4715, var(--accent-gold));
 }
 
 .cta a:first-child {
   background: transparent;
   font-weight: normal;
-  color: #ff9b05;
+  color: var(--accent-secondary);
   padding-left: 0;
 }
 
 .cta a:first-child:hover,
 .cta a:first-child:active {
   background: transparent;
-  color: #f9b241;
+  color: var(--accent-gold);
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  color: #ddd6cb;
+  color: var(--text-primary);
   font-size: 1.5rem;
   max-width: 50rem;
   width: 90%;
   margin: 2rem auto;
   text-align: center;
+  transition: color 0.3s ease;
 }
 
 @media (max-width: 768px) {
