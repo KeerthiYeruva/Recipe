@@ -6,9 +6,37 @@
   max-width: 75rem;
 }
 
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    gap: 1rem;
+    margin: 1rem auto;
+  }
+}
+
 .slideshow {
   width: 40rem;
   height: 25rem;
+}
+
+@media (max-width: 768px) {
+  .slideshow {
+    width: 100%;
+    height: 15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slideshow {
+    height: 12rem;
+  }
 }
 
 .hero {
@@ -28,10 +56,45 @@
   -webkit-text-fill-color: transparent;
 }
 
+@media (max-width: 768px) {
+  .hero {
+    font-size: 1.2rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    font-size: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.2rem;
+  }
+}
+
 .cta {
   font-size: 1.5rem;
   display: flex;
   gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .cta {
+    font-size: 1.2rem;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta {
+    font-size: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 .cta a {
@@ -72,4 +135,18 @@
   width: 90%;
   margin: 2rem auto;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .section {
+    font-size: 1.2rem;
+    margin: 1.5rem auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    font-size: 1rem;
+    margin: 1rem auto;
+  }
 }

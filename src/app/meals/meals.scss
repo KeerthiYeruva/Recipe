@@ -15,6 +15,22 @@
   }
 }
 
+@media (max-width: 768px) {
+  .header-m {
+    gap: 1.5rem;
+    margin: 1.5rem auto 2.5rem auto;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-m {
+    gap: 1rem;
+    margin: 1rem auto 2rem auto;
+    font-size: 1rem;
+  }
+}
+
 .highlight-m {
   background: linear-gradient(90deg, #f9572a, #ff8a05);
   background-clip: text;

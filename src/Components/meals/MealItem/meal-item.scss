@@ -41,6 +41,18 @@
   height: 15rem;
 }
 
+@media (max-width: 768px) {
+  .image {
+    height: 12rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .image {
+    height: 10rem;
+  }
+}
+
 .content-m {
   display: flex;
   flex-direction: column;

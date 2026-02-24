@@ -22,3 +22,9 @@
     transform: scale(1) translateX(0) rotate(0);
   }
 }
+
+@media (max-width: 480px) {
+  .slideshow-i {
+    border-radius: 4px;
+  }
+}
