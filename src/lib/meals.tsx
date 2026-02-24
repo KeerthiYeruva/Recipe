@@ -50,12 +50,13 @@ export async function saveMeal(meal: any): Promise<void> {
   // Save meal to database
   db.prepare(
     `
-    INSERT INTO meals (slug, title, image, summary, instructions, creator, creator_email) VALUES (
+    INSERT INTO meals (slug, title, image, summary, instructions, ingredients, creator, creator_email) VALUES (
          @slug,
          @title,
          @image,
          @summary,
          @instructions,
+         @ingredients,
          @creator,
          @creator_email
       )
@@ -66,6 +67,7 @@ export async function saveMeal(meal: any): Promise<void> {
     image: meal.image, // Ensure this is the file path string
     summary: meal.summary,
     instructions: meal.instructions,
+    ingredients: meal.ingredients || JSON.stringify([]),
     creator: meal.creator,
     creator_email: meal.creator_email,
   });

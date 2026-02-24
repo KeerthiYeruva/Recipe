@@ -10,32 +10,6 @@ interface MealsDetailPageProps {
   }>;
 }
 
-// Function to extract ingredient names (without quantities)
-function extractIngredients(instructions: string): string[] {
-  // Only extract from a dedicated "Ingredients:" section
-  const ingredientsMatch = instructions.match(/ingredients?:\s*\n([\s\S]*?)(?:\n\d+\.|$)/i);
-  
-  if (!ingredientsMatch) return [];
-  
-  const ingredientsText = ingredientsMatch[1];
-  const ingredients = ingredientsText
-    .split('\n')
-    .map(line => {
-      // Remove leading bullets, dashes, numbers
-      let item = line.replace(/^[\s\-•*\d.]+\s*/, '').trim();
-      
-      // Remove quantities (e.g., "1 cup", "half", "2 tbsp", "3 oz")
-      item = item.replace(/^\d+(?:\.?\d+)?\s*(cup|tsp|tbsp|oz|g|kg|ml|piece|pinch|dash|can|bottle|jar)s?\s+of\s+/i, '');
-      item = item.replace(/^\d+(?:\.?\d+)?\s*(cup|tsp|tbsp|oz|g|kg|ml|piece|pinch|dash|can|bottle|jar)s?\s+/i, '');
-      item = item.replace(/^(half|one|two|three|four|five|a bunch of|a few)\s+/i, '');
-      
-      return item.trim();
-    })
-    .filter(item => item.length > 2 && !item.match(/^\d+\./) && !item.includes(':'));
-  
-  return ingredients;
-}
-
 const MealsDetailPage = async ({ params }: MealsDetailPageProps) => {
   const { mealsSlug } = await params;
   const meal = getMeal(mealsSlug);
@@ -45,7 +19,17 @@ const MealsDetailPage = async ({ params }: MealsDetailPageProps) => {
     return null; // Ensure the function exits if notFound is called
   }
 
-  const ingredients = extractIngredients(meal.instructions);
+  // Parse ingredients from JSON string stored in database
+  let ingredients: string[] = [];
+  try {
+    if (meal.ingredients) {
+      ingredients = JSON.parse(meal.ingredients);
+    }
+  } catch (error) {
+    console.error("Error parsing ingredients:", error);
+    ingredients = [];
+  }
+
   meal.instructions = meal.instructions.replace(/\n/g, "<br/>");
 
   return (

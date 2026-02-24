@@ -15,6 +15,7 @@ const dummyMeals = [
         4. Top each bread disc with the cheese corn mixture.
         5. Cook on one side until the cheese melts in butter.
         6. Serve hot.`,
+    ingredients: JSON.stringify(["bread", "pizza sauce", "mayonnaise", "boiled corn", "cheese spread", "red chili flakes", "pizza seasoning", "butter"]),
     creator: "Monika Jain (Homechef)",
     creator_email: "monika_jain@example.com",
   },
@@ -34,6 +35,7 @@ const dummyMeals = [
           3. Serve:
              Dress the waffles with banana, apple, choco chips, berries, and a drizzle of maple syrup. Serve hot.
         `,
+    ingredients: JSON.stringify(["wheat flour", "ground oats", "cinnamon", "cardamom powder", "jaggery powder", "apple", "milk", "oil", "butter", "banana", "chocolate chips", "berries", "maple syrup"]),
     creator: "Chef Healthy",
     creator_email: "chefhealthy@example.com",
   },
@@ -48,6 +50,7 @@ const dummyMeals = [
      2. Now add the liquid ingredients: milk, oil, and vanilla extract.
      3. Mix everything together and make sure to scrape the bottom.
      4. Microwave the mug at regular heating mode for 2 minutes and dig right in.`,
+    ingredients: JSON.stringify(["ragi flour", "jaggery", "cocoa powder", "baking soda", "milk", "oil", "vanilla extract"]),
     creator: "Chef Healthy",
     creator_email: "chefhealthy@example.com",
   },
@@ -60,6 +63,7 @@ const dummyMeals = [
     instructions: `
       1. In the evening, mix oats, chia seeds, yogurt, and water in an airtight container (a jar with a lid works!) and leave it in the fridge.
       2. In the morning, top with banana, walnuts, berries of your choice, and almond or peanut butter. Enjoy immediately or on the go.`,
+    ingredients: JSON.stringify(["oats", "chia seeds", "yogurt", "water", "banana", "walnuts", "berries", "almond butter"]),
     creator: "Half-Human, Half-Mom",
     creator_email: "info@hh-hm.com",
   },
@@ -72,7 +76,8 @@ const dummyMeals = [
     instructions: `
       1. Place Makhana, soaked almonds, dates, milk, and sugar-free dark chocolate into a food processor or high-speed blender.
       2. Pulse/process until smooth and creamy. You may need to turn off the motor and stir the mixture a couple of times while processing.
-      3. Add in chocolate chips (if using). Spoon ice cream into a bowl and enjoy! If you want to be able to scoop the ice cream, you can place it in the freezer for 6-8 hours so it’s solid enough to scoop.`,
+      3. Add in chocolate chips (if using). Spoon ice cream into a bowl and enjoy! If you want to be able to scoop the ice cream, you can place it in the freezer for 6-8 hours so it's solid enough to scoop.`,
+    ingredients: JSON.stringify(["Makhana", "almonds", "dates", "milk", "dark chocolate", "chocolate chips"]),
     creator: "Chef Healthy",
     creator_email: "chefhealthy@example.com",
   },
@@ -86,6 +91,7 @@ const dummyMeals = [
       1. Blend together 2 ripe mangoes (reserving a few pieces for garnish), 200 grams of fresh paneer, 1 tsp of vanilla extract, and ¼ cup of jaggery until smooth.
       2. Transfer the mixture to a bowl and let it set in the refrigerator for at least 3 hours.
       3. Garnish with pistachio and mango pieces before serving and enjoy!`,
+    ingredients: JSON.stringify(["mangoes", "paneer", "vanilla extract", "jaggery", "pistachio"]),
     creator: "bowl2soul",
     creator_email: "bowl2soul@example.com",
   },
@@ -109,6 +115,7 @@ const dummyMeals = [
       4. Serve:
          Enjoy this simple, flavorful salad as a side dish or light meal.
     `,
+    ingredients: JSON.stringify(["tomatoes", "basil", "salt", "pepper", "olive oil", "balsamic vinegar"]),
     creator: "Sophia Green",
     creator_email: "sophiagreen@example.com",
   },
@@ -123,6 +130,7 @@ db.prepare(
        image TEXT NOT NULL,
        summary TEXT NOT NULL,
        instructions TEXT NOT NULL,
+       ingredients TEXT NOT NULL,
        creator TEXT NOT NULL,
        creator_email TEXT NOT NULL
     )
@@ -133,12 +141,13 @@ async function initData() {
   const count = db.prepare("SELECT COUNT(*) as count FROM meals").get().count;
   if (count === 0) {
     const stmt = db.prepare(`
-      INSERT INTO meals (slug, title, image, summary, instructions, creator, creator_email) VALUES (
+      INSERT INTO meals (slug, title, image, summary, instructions, ingredients, creator, creator_email) VALUES (
          @slug,
          @title,
          @image,
          @summary,
          @instructions,
+         @ingredients,
          @creator,
          @creator_email
       )

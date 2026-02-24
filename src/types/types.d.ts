@@ -12,6 +12,7 @@ declare global {
     image: string;
     summary: string;
     instructions: string;
+    ingredients: string;
     creator: string;
     creator_email: string;
   }
