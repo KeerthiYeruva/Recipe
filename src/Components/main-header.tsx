@@ -2,10 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import Logo from "@/assets/logo.jpg";
-import ThemeToggle from "./ThemeToggle/ThemeToggle";
 import "./main-header.scss";
+
+const ThemeToggle = dynamic(
+  () => import('./ThemeToggle/ThemeToggle'),
+  { ssr: false }
+);
 
 const MainHeader = () => {
   return (
@@ -22,10 +27,10 @@ const MainHeader = () => {
           <li>
             <Link href="/community">Community</Link>
           </li>
+          <li className="theme-toggle-wrapper">
+            <ThemeToggle />
+          </li>
         </ul>
-        <li className="theme-toggle-wrapper">
-          <ThemeToggle />
-        </li>
       </nav>
     </header>
   );
