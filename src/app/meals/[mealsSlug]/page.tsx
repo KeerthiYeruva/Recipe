@@ -4,13 +4,14 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface MealsDetailPageProps {
-  params: {
+  params: Promise<{
     mealsSlug: string;
-  };
+  }>;
 }
 
-const MealsDetailPage = ({ params }: MealsDetailPageProps) => {
-  const meal = getMeal(params.mealsSlug);
+const MealsDetailPage = async ({ params }: MealsDetailPageProps) => {
+  const { mealsSlug } = await params;
+  const meal = getMeal(mealsSlug);
 
   if (!meal) {
     notFound();
