@@ -22,4 +22,9 @@ declare global {
     name: string;
     lastModified: number;
   }
+
+  interface FormState {
+    status: "" | "error" | "success";
+    errors: string[];
+  }
 }

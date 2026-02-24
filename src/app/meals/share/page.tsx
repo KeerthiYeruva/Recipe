@@ -7,17 +7,11 @@ import { MealsFormSubmit } from "@/Components/meals/FormSubmit";
 import { useFormState } from "react-dom";
 
 // Define initial state
-const initialState = { status: "", errors: [] as string[] };
+const initialState: FormState = { status: "", errors: [] };
 
 export default function ShareMealPage() {
   // Use useFormState hook
-  const [state, formAction] = useFormState(
-    async (prevState: any, formData: any) => {
-      const result = await shareMeal(prevState, formData);
-      return result;
-    },
-    initialState
-  );
+  const [state, formAction] = useFormState(shareMeal, initialState);
 
   return (
     <>
