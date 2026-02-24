@@ -186,3 +186,106 @@
     opacity: 0;
   }
 }
+
+// Back Button Styles
+.back-button-container {
+  padding: 1rem 1rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--accent-secondary);
+    transform: translateX(-4px);
+  }
+
+  &:active {
+    transform: translateX(-2px);
+  }
+}
+
+// Ingredients Section Styles
+.ingredients-section {
+  max-width: 60rem;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  animation: fade-slide-in-from-bottom 1s ease-out forwards;
+
+  h2 {
+    color: var(--text-primary);
+    font-size: 1.75rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+
+  li {
+    background-color: var(--form-input);
+    padding: 1rem;
+    border-left: 4px solid var(--accent-primary);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-left-color: var(--accent-secondary);
+      transform: translateX(4px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    &::before {
+      content: "✓ ";
+      color: var(--accent-secondary);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .ingredients-section {
+    margin: 1.5rem auto;
+    padding: 1.5rem 1rem;
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .ingredients-list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
