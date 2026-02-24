@@ -2,8 +2,10 @@ import sql from "better-sqlite3";
 import slugify from "slugify";
 import xss from "xss";
 import fs from "node:fs/promises";
+import path from "node:path";
 
-const db = sql("meals.db");
+const dbPath = process.env.DATABASE_PATH || path.join(process.cwd(), "meals.db");
+const db = sql(dbPath);
 
 // Function to get all meals
 export async function getMeals(): Promise<Meal[]> {
