@@ -12,6 +12,7 @@ declare global {
     image: string;
     summary: string;
     instructions: string;
+    ingredients: string;
     creator: string;
     creator_email: string;
   }
@@ -21,5 +22,10 @@ declare global {
     type: string;
     name: string;
     lastModified: number;
+  }
+
+  interface FormState {
+    status: "" | "error" | "success";
+    errors: string[];
   }
 }

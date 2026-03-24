@@ -7,17 +7,11 @@ import { MealsFormSubmit } from "@/Components/meals/FormSubmit";
 import { useFormState } from "react-dom";
 
 // Define initial state
-const initialState = { status: "", errors: [] as string[] };
+const initialState: FormState = { status: "", errors: [] };
 
 export default function ShareMealPage() {
   // Use useFormState hook
-  const [state, formAction] = useFormState(
-    async (prevState: any, formData: any) => {
-      const result = await shareMeal(prevState, formData);
-      return result;
-    },
-    initialState
-  );
+  const [state, formAction] = useFormState(shareMeal, initialState);
 
   return (
     <>
@@ -27,38 +21,70 @@ export default function ShareMealPage() {
         </h1>
         <p>Or any other meal you feel needs sharing!</p>
       </header>
-      <main className={"main-sm"}>
+      <section className={"main-sm"} aria-label="Share a meal form">
         <form className={"form"} action={formAction}>
-          <div className={"row"}>
+          <fieldset>
+            <legend className="sr-only">Creator Information</legend>
+            <div className={"row"}>
+              <p>
+                <label htmlFor="name">Your name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  aria-label="Your full name"
+                  required 
+                />
+              </p>
+              <p>
+                <label htmlFor="email">Your email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  aria-label="Your email address"
+                  required 
+                />
+              </p>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend className="sr-only">Recipe Details</legend>
             <p>
-              <label htmlFor="name">Your name</label>
-              <input type="text" id="name" name="name" required />
+              <label htmlFor="title">Title</label>
+              <input 
+                type="text" 
+                id="title" 
+                name="title" 
+                aria-label="Recipe title"
+                required 
+              />
             </p>
             <p>
-              <label htmlFor="email">Your email</label>
-              <input type="email" id="email" name="email" required />
+              <label htmlFor="summary">Short Summary</label>
+              <input 
+                type="text" 
+                id="summary" 
+                name="summary" 
+                aria-label="Brief recipe summary"
+                required 
+              />
             </p>
-          </div>
-          <p>
-            <label htmlFor="title">Title</label>
-            <input type="text" id="title" name="title" required />
-          </p>
-          <p>
-            <label htmlFor="summary">Short Summary</label>
-            <input type="text" id="summary" name="summary" required />
-          </p>
-          <p>
-            <label htmlFor="instructions">Instructions</label>
-            <textarea
-              id="instructions"
-              name="instructions"
-              rows={10}
-              required
-            ></textarea>
-          </p>
-          <ImagePicker label="Image" name="image" />
+            <p>
+              <label htmlFor="instructions">Instructions</label>
+              <textarea
+                id="instructions"
+                name="instructions"
+                rows={10}
+                aria-label="step-by-step recipe instructions"
+                required
+              ></textarea>
+            </p>
+            <ImagePicker label="Image" name="image" />
+          </fieldset>
           {state.status === "error" && (
-            <div className="error-messages">
+            <div className="error-messages" role="alert">
+              <h2 className="sr-only">Form submission errors</h2>
               {(state.errors ?? []).map((error, index) => (
                 <p key={index} className="error">
                   {error}
@@ -66,11 +92,16 @@ export default function ShareMealPage() {
               ))}
             </div>
           )}
+          {state.status === "success" && (
+            <div className="success-message" role="status">
+              Recipe shared successfully! Thank you for contributing.
+            </div>
+          )}
           <p className={"actions"}>
             <MealsFormSubmit />
           </p>
         </form>
-      </main>
+      </section>
     </>
   );
 }

@@ -20,9 +20,10 @@
 
   .headerText {
     padding: 0.5rem 1rem 0 1rem;
-    color: #2d3436; /* Dark Gray */
+    color: var(--text-primary);
     max-width: 40rem;
     animation: fade-slide-in-from-right 1s ease-out forwards;
+    transition: color 0.3s ease;
 
     h1 {
       margin: 0;
@@ -38,29 +39,65 @@
   }
 }
 
+@media (max-width: 768px) {
+  .header-md {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+
+    .image-md {
+      width: 100%;
+      height: 12rem;
+    }
+
+    .headerText h1 {
+      font-size: 2rem;
+    }
+
+    .summary {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header-md {
+    gap: 1rem;
+
+    .image-md {
+      height: 10rem;
+    }
+
+    .headerText {
+      padding: 0.25rem 0.5rem 0 0.5rem;
+    }
+
+    .headerText h1 {
+      font-size: 1.5rem;
+    }
+
+    .summary {
+      font-size: 1rem;
+    }
+  }
+}
+
 .creator-md {
   font-size: 1.5rem;
-  color: #16a085; /* Teal */
+  color: var(--accent-mauve);
   font-style: italic;
-
+  transition: color 0.3s ease;
   a {
-    background: linear-gradient(
-      90deg,
-      #27ae60,
-      #2ecc71
-    ); /* Green to Light Green */
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-fourth));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
   }
 
   a:hover,
   a:active {
-    background: linear-gradient(
-      90deg,
-      #27ae60,
-      #2ecc71
-    ); /* Green to Light Green */
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-fourth));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -71,22 +108,40 @@
 .instructions-md {
   font-size: 1.25rem;
   line-height: 1.5;
-  background-color: #f4f6f7; /* Very Light Gray */
-  color: #2d3436; /* Dark Gray */
+  background-color: var(--instructions-bg);
+  color: var(--instructions-text);
   border-radius: 8px;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
   padding: 2rem;
   max-width: 60rem;
   margin: 2rem auto;
   animation: fade-slide-in-from-bottom 1s ease-out forwards;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .instructions-md {
+    font-size: 1rem;
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .instructions-md {
+    font-size: 0.9rem;
+    padding: 1rem;
+    margin: 1rem auto;
+  }
 }
 
 .loading {
   font-size: 3rem;
   text-align: center;
-  color: #2d3436; /* Dark Gray */
+  color: var(--text-primary);
   font-weight: bold;
   animation: flash 1s ease-in-out infinite alternate;
+  transition: color 0.3s ease;
 }
 
 @keyframes fade-slide-in-from-left {
@@ -131,5 +186,108 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+// Back Button Styles
+.back-button-container {
+  padding: 1rem 1rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--accent-secondary);
+    transform: translateX(-4px);
+  }
+
+  &:active {
+    transform: translateX(-2px);
+  }
+}
+
+// Ingredients Section Styles
+.ingredients-section {
+  max-width: 60rem;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  animation: fade-slide-in-from-bottom 1s ease-out forwards;
+
+  h2 {
+    color: var(--text-primary);
+    font-size: 1.75rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-family: "Montserrat", sans-serif;
+  }
+}
+
+.ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+
+  li {
+    background-color: var(--form-input);
+    padding: 1rem;
+    border-left: 4px solid var(--accent-primary);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-left-color: var(--accent-secondary);
+      transform: translateX(4px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    &::before {
+      content: "✓ ";
+      color: var(--accent-secondary);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .ingredients-section {
+    margin: 1.5rem auto;
+    padding: 1.5rem 1rem;
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .ingredients-list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 }

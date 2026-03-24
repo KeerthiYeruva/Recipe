@@ -2,12 +2,13 @@ import sql from "better-sqlite3";
 import slugify from "slugify";
 import xss from "xss";
 import fs from "node:fs/promises";
+import path from "node:path";
 
-const db = sql("meals.db");
+const dbPath = process.env.DATABASE_PATH || path.join(process.cwd(), "meals.db");
+const db = sql(dbPath);
 
 // Function to get all meals
 export async function getMeals(): Promise<Meal[]> {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   return db.prepare("SELECT * FROM meals").all() as Meal[];
 }
 
@@ -49,12 +50,13 @@ export async function saveMeal(meal: any): Promise<void> {
   // Save meal to database
   db.prepare(
     `
-    INSERT INTO meals (slug, title, image, summary, instructions, creator, creator_email) VALUES (
+    INSERT INTO meals (slug, title, image, summary, instructions, ingredients, creator, creator_email) VALUES (
          @slug,
          @title,
          @image,
          @summary,
          @instructions,
+         @ingredients,
          @creator,
          @creator_email
       )
@@ -65,6 +67,7 @@ export async function saveMeal(meal: any): Promise<void> {
     image: meal.image, // Ensure this is the file path string
     summary: meal.summary,
     instructions: meal.instructions,
+    ingredients: meal.ingredients || JSON.stringify([]),
     creator: meal.creator,
     creator_email: meal.creator_email,
   });

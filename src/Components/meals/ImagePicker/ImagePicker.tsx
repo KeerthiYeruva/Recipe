@@ -30,12 +30,12 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ label, name }) => {
     <div className="image-picker">
       <label htmlFor={name}>{label}</label>
       <div className="controls">
-        <div className="preview">
+        <div className="preview" role="region" aria-label="Image preview">
           {!pickedImage ? (
             <p>No image to preview</p>
           ) : (
             <div className="image-container">
-              <Image src={pickedImage} alt="image by user" fill />
+              <Image src={pickedImage} alt="Selected meal image preview" fill />
             </div>
           )}
         </div>
@@ -47,10 +47,16 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ label, name }) => {
           name={name}
           ref={imageInputRef}
           onChange={handleImageChange}
-          style={{ position: "absolute", left: "-9999px" }} // Move off-screen
+          style={{ position: "absolute", left: "-9999px" }}
+          aria-label={`Upload ${label.toLowerCase()}`}
           required
         />
-        <button className="button" type="button" onClick={triggerImageUpload}>
+        <button 
+          className="button" 
+          type="button" 
+          onClick={triggerImageUpload}
+          aria-label={`Click to select ${label.toLowerCase()}`}
+        >
           Pick an Image
         </button>
       </div>

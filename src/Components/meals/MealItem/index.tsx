@@ -9,7 +9,7 @@ const MealItem: React.FC<Meal> = ({ title, slug, image, summary, creator }) => {
     <article className={"meal-m"}>
       <header>
         <div className={"image"}>
-          <Image src={image} alt={title} fill />
+          <Image src={image} alt={`${title} - a quick recipe`} fill />
         </div>
         <div className={"headerText-m"}>
           <h2>{title}</h2>
@@ -19,7 +19,9 @@ const MealItem: React.FC<Meal> = ({ title, slug, image, summary, creator }) => {
       <div className={"content-m"}>
         <p className={"summary"}>{summary}</p>
         <div className={"actions-m"}>
-          <Link href={`/meals/${slug}`}>View Details</Link>
+          <Link href={`/meals/${slug}`} aria-label={`View details for ${title} recipe`}>
+            View Details
+          </Link>
         </div>
       </div>
     </article>

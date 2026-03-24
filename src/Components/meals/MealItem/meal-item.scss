@@ -7,8 +7,8 @@
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   transition: all 0.3s ease-in-out;
-  color: #2d3436; /* Dark Gray */
-  background: #f4f6f7; /* Very Light Gray */
+  color: var(--text-primary);
+  background: linear-gradient(90deg, var(--bg-secondary), var(--bg-tertiary));
 
   h2,
   p {
@@ -31,7 +31,7 @@
 
   p {
     font-size: 0.75rem;
-    color: #16a085; /* Teal */
+    color: var(--accent-mauve);
     font-style: italic;
   }
 }
@@ -39,6 +39,18 @@
 .image {
   position: relative;
   height: 15rem;
+}
+
+@media (max-width: 768px) {
+  .image {
+    height: 12rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .image {
+    height: 10rem;
+  }
 }
 
 .content-m {
@@ -60,19 +72,16 @@
     margin-top: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    background: linear-gradient(
-      90deg,
-      #27ae60,
-      #2ecc71
-    ); /* Green to Light Green */
-    color: #ffffff;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-light);
     font-weight: bold;
     text-decoration: none;
+    transition: all 0.3s ease;
   }
 
   a:hover,
   a:active {
-    background: linear-gradient(90deg, #1abc9c, #16a085); /* Teal shades */
-    box-shadow: 0 0 12px rgba(26, 188, 156, 0.8);
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    box-shadow: 0 0 12px rgba(242, 100, 18, 0.8);
   }
 }
