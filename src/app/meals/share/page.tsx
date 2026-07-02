@@ -153,7 +153,7 @@ export default function ShareMealPage() {
           )}
           {state.status === "success" && (
             <div className="success-message" role="status">
-              Recipe shared successfully! Thank you for contributing.
+              {state.message ?? "Recipe shared successfully! Thank you for contributing."}
             </div>
           )}
           <p className={"actions"}>

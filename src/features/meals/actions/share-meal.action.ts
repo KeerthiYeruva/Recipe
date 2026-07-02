@@ -5,6 +5,8 @@ import { validateMealForm } from "../validators/meal.validator";
 import type { MealFormInput } from "../types/meal.types";
 import type { FormState } from "@/shared/types/form.types";
 
+const isVercelDeployment = Boolean(process.env.VERCEL);
+
 export async function shareMealAction(
   _previousState: FormState,
   formData: FormData
@@ -29,9 +31,22 @@ export async function shareMealAction(
     return { status: "error", errors: validation.errors };
   }
 
+  if (isVercelDeployment) {
+    return {
+      status: "success",
+      errors: [],
+      message:
+        "Demo submission received. On Vercel, recipes are not saved permanently because this app uses local SQLite and file uploads.",
+    };
+  }
+
   try {
     await saveMeal(validation.data);
-    return { status: "success", errors: [] };
+    return {
+      status: "success",
+      errors: [],
+      message: "Recipe shared successfully! Thank you for contributing.",
+    };
   } catch {
     return {
       status: "error",

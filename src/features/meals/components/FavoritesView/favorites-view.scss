@@ -1,0 +1,36 @@
+.favorites-view {
+  width: 90%;
+  max-width: 90rem;
+  margin: 0 auto 4rem auto;
+}
+
+.favorites-empty {
+  max-width: 42rem;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: 1px solid var(--form-border);
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-align: center;
+
+  h2 {
+    margin: 0 0 0.75rem 0;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  p {
+    margin: 0 0 1.5rem 0;
+    color: var(--text-secondary);
+  }
+
+  a {
+    display: inline-block;
+    padding: 0.65rem 1.1rem;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--text-light);
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
