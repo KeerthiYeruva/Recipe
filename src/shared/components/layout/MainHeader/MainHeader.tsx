@@ -28,6 +28,9 @@ export function MainHeader() {
             <Link href="/meals">Meals</Link>
           </li>
           <li>
+            <Link href="/favorites">Favorites</Link>
+          </li>
+          <li>
             <Link href="/community">Community</Link>
           </li>
           <li className="theme-toggle-wrapper">

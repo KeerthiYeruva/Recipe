@@ -3,8 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getMealBySlug } from "@/features/meals/repositories/meal.repository";
+import { getMeals } from "@/features/meals/repositories/meal.repository";
+import { FavoriteButton } from "@/features/meals/components/FavoriteButton/FavoriteButton";
+import { IngredientTools } from "@/features/meals/components/IngredientTools/IngredientTools";
+import { MealsGrid } from "@/features/meals/components/MealsGrid/MealsGrid";
 import {
   formatInstructionsAsHtml,
+  getSharedIngredientCount,
   parseIngredients,
 } from "@/features/meals/utils/meal-formatters";
 import "./meals-detail.scss";
@@ -25,6 +30,19 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
 
   const ingredients = parseIngredients(meal.ingredients);
   const instructions = formatInstructionsAsHtml(meal.instructions);
+  const allMeals = await getMeals();
+  const relatedMeals = allMeals
+    .filter((relatedMeal) => relatedMeal.slug !== meal.slug)
+    .map((relatedMeal) => ({
+      meal: relatedMeal,
+      score:
+        (relatedMeal.category === meal.category ? 2 : 0) +
+        getSharedIngredientCount(meal.ingredients, relatedMeal.ingredients),
+    }))
+    .filter(({ score }) => score > 0)
+    .sort((firstMeal, secondMeal) => secondMeal.score - firstMeal.score)
+    .slice(0, 3)
+    .map(({ meal: relatedMeal }) => relatedMeal);
 
   return (
     <>
@@ -47,17 +65,38 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
             by <strong>{meal.creator}</strong>
           </p>
           <p className="summary">{meal.summary}</p>
+          <div className="detail-tools">
+            <FavoriteButton slug={meal.slug} title={meal.title} />
+          </div>
+          <dl className="recipe-meta">
+            <div>
+              <dt>Category</dt>
+              <dd>{meal.category}</dd>
+            </div>
+            <div>
+              <dt>Prep Time</dt>
+              <dd>{meal.prep_time} mins</dd>
+            </div>
+            <div>
+              <dt>Servings</dt>
+              <dd>{meal.servings}</dd>
+            </div>
+            <div>
+              <dt>Difficulty</dt>
+              <dd>{meal.difficulty}</dd>
+            </div>
+            <div>
+              <dt>Calories</dt>
+              <dd>{meal.calories} kcal</dd>
+            </div>
+          </dl>
         </div>
       </header>
 
       {ingredients.length > 0 && (
         <section aria-label="Recipe ingredients" className="ingredients-section">
           <h2>Ingredients</h2>
-          <ul className="ingredients-list">
-            {ingredients.map((ingredient) => (
-              <li key={ingredient}>{ingredient}</li>
-            ))}
-          </ul>
+          <IngredientTools ingredients={ingredients} />
         </section>
       )}
 
@@ -68,6 +107,13 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
           dangerouslySetInnerHTML={{ __html: instructions }}
         />
       </section>
+
+      {relatedMeals.length > 0 && (
+        <section className="related-recipes" aria-label="Related recipes">
+          <h2>You may also like</h2>
+          <MealsGrid meals={relatedMeals} />
+        </section>
+      )}
     </>
   );
 }

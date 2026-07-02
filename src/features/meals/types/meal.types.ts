@@ -6,6 +6,11 @@ export interface Meal {
   summary: string;
   instructions: string;
   ingredients: string;
+  category: string;
+  prep_time: number;
+  servings: number;
+  difficulty: string;
+  calories: number;
   creator: string;
   creator_email: string;
 }
@@ -15,6 +20,11 @@ export interface MealFormInput {
   summary: FormDataEntryValue | null;
   instructions: FormDataEntryValue | null;
   image: FormDataEntryValue | null;
+  category: FormDataEntryValue | null;
+  prep_time: FormDataEntryValue | null;
+  servings: FormDataEntryValue | null;
+  difficulty: FormDataEntryValue | null;
+  calories: FormDataEntryValue | null;
   creator: FormDataEntryValue | null;
   creator_email: FormDataEntryValue | null;
 }
@@ -24,6 +34,11 @@ export interface CreateMealInput {
   summary: string;
   instructions: string;
   image: File;
+  category: string;
+  prep_time: number;
+  servings: number;
+  difficulty: string;
+  calories: number;
   creator: string;
   creator_email: string;
   ingredients?: string;

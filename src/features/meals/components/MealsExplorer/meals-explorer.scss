@@ -1,0 +1,66 @@
+.meals-explorer {
+  width: 100%;
+}
+
+.explorer-controls {
+  width: 90%;
+  max-width: 90rem;
+  margin: 0 auto 1.5rem auto;
+  display: grid;
+  grid-template-columns: minmax(16rem, 1fr) repeat(2, minmax(12rem, 16rem));
+  gap: 1rem;
+  align-items: end;
+}
+
+.control-field {
+  label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: var(--accent-light-gray);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  input,
+  select {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--form-border);
+    border-radius: 4px;
+    background: var(--form-bg);
+    color: var(--text-primary);
+    font: inherit;
+  }
+
+  input:focus,
+  select:focus {
+    outline: 2px solid var(--form-focus);
+    outline-offset: 2px;
+  }
+}
+
+.result-count,
+.empty-results {
+  width: 90%;
+  max-width: 90rem;
+  margin: 0 auto 1rem auto;
+  color: var(--text-secondary);
+}
+
+.empty-results {
+  padding: 2rem;
+  border: 1px solid var(--form-border);
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .explorer-controls {
+    grid-template-columns: 1fr;
+  }
+}

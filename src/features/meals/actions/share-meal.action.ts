@@ -14,6 +14,11 @@ export async function shareMealAction(
     summary: formData.get("summary"),
     instructions: formData.get("instructions"),
     image: formData.get("image"),
+    category: formData.get("category"),
+    prep_time: formData.get("prep_time"),
+    servings: formData.get("servings"),
+    difficulty: formData.get("difficulty"),
+    calories: formData.get("calories"),
     creator: formData.get("name"),
     creator_email: formData.get("email"),
   };

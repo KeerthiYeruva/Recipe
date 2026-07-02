@@ -1,9 +1,8 @@
-import { MealsGrid } from "@/features/meals/components/MealsGrid/MealsGrid";
 import "./meals.scss";
 import Link from "next/link";
 
 import { getMeals } from "@/features/meals/repositories/meal.repository";
-import { Suspense } from "react";
+import { MealsExplorer } from "@/features/meals/components/MealsExplorer/MealsExplorer";
 
 const MealsPage = async () => {
   const meals = await getMeals();
@@ -26,8 +25,7 @@ const MealsPage = async () => {
         </p>
       </header>
       <section className="main" aria-label="Recipes">
-        <Suspense fallback={<p>Loading recipes...</p>}></Suspense>
-        <MealsGrid meals={meals} />
+        <MealsExplorer meals={meals} />
       </section>
     </>
   );

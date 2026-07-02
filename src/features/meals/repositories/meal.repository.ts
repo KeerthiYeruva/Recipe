@@ -18,13 +18,18 @@ export function createMeal(meal: PersistedMealInput): void {
 
   db.prepare(
     `
-    INSERT INTO meals (slug, title, image, summary, instructions, ingredients, creator, creator_email) VALUES (
+    INSERT INTO meals (slug, title, image, summary, instructions, ingredients, category, prep_time, servings, difficulty, calories, creator, creator_email) VALUES (
       @slug,
       @title,
       @image,
       @summary,
       @instructions,
       @ingredients,
+      @category,
+      @prep_time,
+      @servings,
+      @difficulty,
+      @calories,
       @creator,
       @creator_email
     )
@@ -36,6 +41,11 @@ export function createMeal(meal: PersistedMealInput): void {
     summary: meal.summary,
     instructions: meal.instructions,
     ingredients: meal.ingredients || JSON.stringify([]),
+    category: meal.category,
+    prep_time: meal.prep_time,
+    servings: meal.servings,
+    difficulty: meal.difficulty,
+    calories: meal.calories,
     creator: meal.creator,
     creator_email: meal.creator_email,
   });

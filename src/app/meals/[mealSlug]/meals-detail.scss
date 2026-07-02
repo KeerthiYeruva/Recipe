@@ -66,10 +66,59 @@
   color: var(--text-secondary);
 }
 
+.detail-tools {
+  margin-top: 1.25rem;
+}
+
+.recipe-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.75rem;
+  margin: 2rem 0 0 0;
+}
+
+.recipe-meta div {
+  padding: 0.85rem;
+  border: 1px solid var(--form-border);
+  border-radius: 4px;
+  background: var(--bg-secondary);
+}
+
+.recipe-meta dt {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.recipe-meta dd {
+  margin: 0.35rem 0 0 0;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
 .ingredients-section {
   max-width: 80rem;
   margin: 3rem auto;
   padding: 0 2rem;
+}
+
+.ingredients-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.copy-ingredients-button {
+  min-height: 2.5rem;
+  padding: 0.55rem 1rem;
+  border: 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  color: var(--text-light);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
 }
 
 .ingredients-list {
@@ -81,9 +130,28 @@
 }
 
 .ingredients-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   padding: 1rem;
   background: var(--bg-secondary);
   border-radius: 0.5rem;
+}
+
+.ingredients-list input {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--accent-primary);
+}
+
+.ingredients-list label {
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.ingredients-list input:checked + label {
+  color: var(--text-secondary);
+  text-decoration: line-through;
 }
 
 .instructions-md {
@@ -95,6 +163,18 @@
   font-size: 1.25rem;
   line-height: 1.8;
   color: var(--text-primary);
+}
+
+.related-recipes {
+  max-width: 90rem;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.related-recipes h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-family: "Montserrat", sans-serif;
 }
 
 @media (max-width: 768px) {

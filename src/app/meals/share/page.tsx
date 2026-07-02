@@ -71,6 +71,64 @@ export default function ShareMealPage() {
                 required 
               />
             </p>
+            <div className="row">
+              <p>
+                <label htmlFor="category">Category</label>
+                <select id="category" name="category" required>
+                  <option value="">Select category</option>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Snacks">Snacks</option>
+                  <option value="Drinks">Drinks</option>
+                </select>
+              </p>
+              <p>
+                <label htmlFor="difficulty">Difficulty</label>
+                <select id="difficulty" name="difficulty" required>
+                  <option value="">Select difficulty</option>
+                  <option value="Easy">Easy</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Hard">Hard</option>
+                </select>
+              </p>
+            </div>
+            <div className="row">
+              <p>
+                <label htmlFor="prep_time">Prep Time</label>
+                <input
+                  type="number"
+                  id="prep_time"
+                  name="prep_time"
+                  min="1"
+                  placeholder="10"
+                  required
+                />
+              </p>
+              <p>
+                <label htmlFor="servings">Servings</label>
+                <input
+                  type="number"
+                  id="servings"
+                  name="servings"
+                  min="1"
+                  placeholder="2"
+                  required
+                />
+              </p>
+              <p>
+                <label htmlFor="calories">Calories</label>
+                <input
+                  type="number"
+                  id="calories"
+                  name="calories"
+                  min="1"
+                  placeholder="250"
+                  required
+                />
+              </p>
+            </div>
             <p>
               <label htmlFor="instructions">Instructions</label>
               <textarea

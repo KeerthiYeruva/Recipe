@@ -1,0 +1,23 @@
+.header-favorites {
+  width: 90%;
+  max-width: 75rem;
+  margin: 3rem auto 2rem auto;
+  color: var(--text-primary);
+}
+
+.header-favorites h1 {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3rem;
+}
+
+.header-favorites p {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .header-favorites h1 {
+    font-size: 2.2rem;
+  }
+}

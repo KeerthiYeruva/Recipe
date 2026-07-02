@@ -65,7 +65,8 @@
   }
 }
 .form input,
-.form textarea {
+.form textarea,
+.form select {
   display: block;
   width: 100%;
   padding: 0.5rem 1rem;
@@ -78,7 +79,8 @@
   transition: all 0.3s ease;
 }
 .form input:focus,
-.form textarea:focus {
+.form textarea:focus,
+.form select:focus {
   outline-color: var(--form-focus);
   background-color: var(--form-input);
 }
