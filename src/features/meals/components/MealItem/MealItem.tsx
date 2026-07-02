@@ -49,10 +49,7 @@ export function MealItem({
           </div>
         </dl>
         <div className="actions-m">
-          <Link
-            href={`/meals/${slug}`}
-            aria-label={`View details for ${title} recipe`}
-          >
+          <Link href={`/meals/${slug}`} aria-label={`View details for ${title} recipe`}>
             View Details
           </Link>
         </div>

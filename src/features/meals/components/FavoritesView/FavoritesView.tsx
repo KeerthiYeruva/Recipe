@@ -33,7 +33,9 @@ export function FavoritesView({ meals }: FavoritesViewProps) {
       ) : (
         <div className="favorites-empty">
           <h2>No favorites saved yet</h2>
-          <p>Save recipes from the meals page and they will appear here on this device.</p>
+          <p>
+            Save recipes from the meals page and they will appear here on this device.
+          </p>
           <Link href="/meals">Explore Meals</Link>
         </div>
       )}

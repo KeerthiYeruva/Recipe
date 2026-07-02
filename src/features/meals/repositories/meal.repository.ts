@@ -8,9 +8,7 @@ export async function getMeals(): Promise<Meal[]> {
 }
 
 export function getMealBySlug(slug: string): Meal | undefined {
-  return db.prepare("SELECT * FROM meals WHERE slug = ?").get(slug) as
-    | Meal
-    | undefined;
+  return db.prepare("SELECT * FROM meals WHERE slug = ?").get(slug) as Meal | undefined;
 }
 
 export function createMeal(meal: PersistedMealInput): void {

@@ -15,42 +15,42 @@ The project is designed to work well as a portfolio or learning app on free host
 
 ## Features
 
-| Area | Details |
-| --- | --- |
-| Recipe browsing | View seeded and submitted recipes from SQLite. |
-| Search | Search recipes by title, creator, category, and ingredients. |
-| Category filters | Filter meals by Breakfast, Lunch, Dinner, Dessert, Snacks, or Drinks. |
-| Sorting | Sort by newest, oldest, recipe name A-Z, or recipe name Z-A. |
-| Recipe metadata | Display category, prep time, servings, difficulty, and calories. |
-| Favorites | Save favorite recipes in the browser with `localStorage` and view them on `/favorites`. |
-| Ingredient tools | Check off ingredients while cooking and copy ingredients to the clipboard. |
-| Related recipes | Show related recipes on recipe detail pages. |
-| Recipe sharing | Submit a recipe through a server action with validation and image upload. |
-| Theme support | Toggle between light and dark themes through React context. |
-| Accessibility | Includes semantic sections, labeled form controls, skip link support, and status messages. |
+| Area             | Details                                                                                    |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| Recipe browsing  | View seeded and submitted recipes from SQLite.                                             |
+| Search           | Search recipes by title, creator, category, and ingredients.                               |
+| Category filters | Filter meals by Breakfast, Lunch, Dinner, Dessert, Snacks, or Drinks.                      |
+| Sorting          | Sort by newest, oldest, recipe name A-Z, or recipe name Z-A.                               |
+| Recipe metadata  | Display category, prep time, servings, difficulty, and calories.                           |
+| Favorites        | Save favorite recipes in the browser with `localStorage` and view them on `/favorites`.    |
+| Ingredient tools | Check off ingredients while cooking and copy ingredients to the clipboard.                 |
+| Related recipes  | Show related recipes on recipe detail pages.                                               |
+| Recipe sharing   | Submit a recipe through a server action with validation and image upload.                  |
+| Theme support    | Toggle between light and dark themes through React context.                                |
+| Accessibility    | Includes semantic sections, labeled form controls, skip link support, and status messages. |
 
 ## Tech Stack
 
-| Layer | Technology |
-| --- | --- |
-| Framework | Next.js 16 App Router |
-| UI | React 19 |
-| Language | TypeScript 6 |
-| Styling | SCSS and Sass modules |
-| Database | SQLite with `better-sqlite3` |
-| Forms | Server actions and `useFormState` |
-| Utilities | `slugify`, `xss`, `sharp` |
+| Layer     | Technology                        |
+| --------- | --------------------------------- |
+| Framework | Next.js 16 App Router             |
+| UI        | React 19                          |
+| Language  | TypeScript 6                      |
+| Styling   | SCSS and Sass modules             |
+| Database  | SQLite with `better-sqlite3`      |
+| Forms     | Server actions and `useFormState` |
+| Utilities | `slugify`, `xss`, `sharp`         |
 
 ## Routes
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Home page with slideshow, intro text, and calls to action. |
-| `/meals` | Searchable, filterable, sortable recipe grid. |
+| Route               | Purpose                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| `/`                 | Home page with slideshow, intro text, and calls to action.                               |
+| `/meals`            | Searchable, filterable, sortable recipe grid.                                            |
 | `/meals/[mealSlug]` | Recipe detail page with metadata, ingredients, instructions, tools, and related recipes. |
-| `/meals/share` | Recipe submission form. |
-| `/favorites` | Browser-saved favorite recipes. |
-| `/community` | Community information page. |
+| `/meals/share`      | Recipe submission form.                                                                  |
+| `/favorites`        | Browser-saved favorite recipes.                                                          |
+| `/community`        | Community information page.                                                              |
 
 ## Project Structure
 
@@ -114,17 +114,17 @@ Open http://localhost:3000.
 
 ## Commands
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the local development server. |
-| `npm run build` | Create a production build. |
-| `npm run start` | Run the production build. |
+| Command            | Description                                    |
+| ------------------ | ---------------------------------------------- |
+| `npm run dev`      | Start the local development server.            |
+| `npm run build`    | Create a production build.                     |
+| `npm run start`    | Run the production build.                      |
 | `npx tsc --noEmit` | Type-check the project without writing output. |
 
 ## Environment Variables
 
-| Variable | Purpose |
-| --- | --- |
+| Variable        | Purpose                                                                              |
+| --------------- | ------------------------------------------------------------------------------------ |
 | `DATABASE_PATH` | Optional path to a SQLite database file. Defaults to `meals.db` in the project root. |
 
 Example:

@@ -27,10 +27,7 @@ const CommunityPage = () => {
             <p>Find new friends & like-minded people</p>
           </li>
           <li>
-            <Image
-              src={eventsIcon}
-              alt="A crowd of people at a cooking event"
-            />
+            <Image src={eventsIcon} alt="A crowd of people at a cooking event" />
             <p>Participate in exclusive events</p>
           </li>
         </ul>

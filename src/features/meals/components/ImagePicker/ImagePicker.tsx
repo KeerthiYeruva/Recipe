@@ -34,11 +34,7 @@ export function ImagePicker({ label, name }: ImagePickerProps) {
             <p>No image to preview</p>
           ) : (
             <div className="image-container">
-              <Image
-                src={imagePreviewUrl}
-                alt="Selected meal image preview"
-                fill
-              />
+              <Image src={imagePreviewUrl} alt="Selected meal image preview" fill />
             </div>
           )}
         </div>

@@ -15,11 +15,7 @@ export function validateMealForm(meal: MealFormInput): MealValidationResult {
     errors
   );
   const category = getRequiredText(meal.category, "Category is required.", errors);
-  const difficulty = getRequiredText(
-    meal.difficulty,
-    "Difficulty is required.",
-    errors
-  );
+  const difficulty = getRequiredText(meal.difficulty, "Difficulty is required.", errors);
   const prepTime = getRequiredPositiveNumber(
     meal.prep_time,
     "Prep time must be a positive number.",
@@ -35,11 +31,7 @@ export function validateMealForm(meal: MealFormInput): MealValidationResult {
     "Calories must be a positive number.",
     errors
   );
-  const creator = getRequiredText(
-    meal.creator,
-    "Creator name is required.",
-    errors
-  );
+  const creator = getRequiredText(meal.creator, "Creator name is required.", errors);
   const creatorEmail = getRequiredText(
     meal.creator_email,
     "Creator email is required.",

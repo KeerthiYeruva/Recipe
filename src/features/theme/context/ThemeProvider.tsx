@@ -5,9 +5,7 @@ import type { ReactNode } from "react";
 
 import type { Theme, ThemeContextValue } from "../types/theme.types";
 
-export const ThemeContext = createContext<ThemeContextValue | undefined>(
-  undefined
-);
+export const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");

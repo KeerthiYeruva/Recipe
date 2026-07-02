@@ -29,22 +29,22 @@ export default function ShareMealPage() {
             <div className={"row"}>
               <p>
                 <label htmlFor="name">Your name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
                   aria-label="Your full name"
-                  required 
+                  required
                 />
               </p>
               <p>
                 <label htmlFor="email">Your email</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
                   aria-label="Your email address"
-                  required 
+                  required
                 />
               </p>
             </div>
@@ -53,22 +53,22 @@ export default function ShareMealPage() {
             <legend className="sr-only">Recipe Details</legend>
             <p>
               <label htmlFor="title">Title</label>
-              <input 
-                type="text" 
-                id="title" 
-                name="title" 
+              <input
+                type="text"
+                id="title"
+                name="title"
                 aria-label="Recipe title"
-                required 
+                required
               />
             </p>
             <p>
               <label htmlFor="summary">Short Summary</label>
-              <input 
-                type="text" 
-                id="summary" 
-                name="summary" 
+              <input
+                type="text"
+                id="summary"
+                name="summary"
                 aria-label="Brief recipe summary"
-                required 
+                required
               />
             </p>
             <div className="row">

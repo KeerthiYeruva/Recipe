@@ -12,7 +12,10 @@
   height: 2.75rem;
   padding: 0;
   line-height: 1;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
     transform 0.2s ease;
 
   .icon {
@@ -37,7 +40,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    transition: background-color 0.01ms linear, border-color 0.01ms linear,
+    transition:
+      background-color 0.01ms linear,
+      border-color 0.01ms linear,
       color 0.01ms linear;
 
     &:hover,

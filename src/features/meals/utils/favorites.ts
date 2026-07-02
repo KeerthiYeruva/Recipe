@@ -6,9 +6,7 @@ export function getFavoriteMealSlugs(): string[] {
   }
 
   try {
-    const storedFavoriteSlugs = window.localStorage.getItem(
-      FAVORITE_MEALS_STORAGE_KEY
-    );
+    const storedFavoriteSlugs = window.localStorage.getItem(FAVORITE_MEALS_STORAGE_KEY);
     const parsedFavoriteSlugs = storedFavoriteSlugs
       ? JSON.parse(storedFavoriteSlugs)
       : [];
