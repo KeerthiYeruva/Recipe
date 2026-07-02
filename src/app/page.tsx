@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import "./page.scss";
-import ImageSlideshow from "@/Components/slideshow/SlideShow";
+import { ImageSlideshow } from "@/shared/components/media/ImageSlideshow/ImageSlideshow";
 
 const Home = () => {
   return (
@@ -23,8 +23,7 @@ const Home = () => {
           </div>
         </div>
       </header>
-      <main>
-        <section className="section">
+      <section className="section">
           <h2>Why?</h2>
           <p>
             These recipes are designed to be prepared quickly, making them ideal
@@ -40,8 +39,7 @@ const Home = () => {
             taste, ensuring that you can enjoy a delicious meal even on your
             busiest days.
           </p>
-        </section>
-      </main>
+      </section>
     </>
   );
 };

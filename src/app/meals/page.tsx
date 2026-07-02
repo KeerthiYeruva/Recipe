@@ -1,8 +1,8 @@
-import MealsGrid from "@/Components/meals/MealsGrid/MealsGrid";
+import { MealsGrid } from "@/features/meals/components/MealsGrid/MealsGrid";
 import "./meals.scss";
 import Link from "next/link";
 
-import { getMeals } from "@/lib/meals";
+import { getMeals } from "@/features/meals/repositories/meal.repository";
 import { Suspense } from "react";
 
 const MealsPage = async () => {

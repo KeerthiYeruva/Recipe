@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.scss";
-import MainHeader from "@/Components/main-header";
-import ClientWrapper from "@/Components/ClientWrapper/ClientWrapper";
+import { MainHeader } from "@/shared/components/layout/MainHeader/MainHeader";
+import { ClientWrapper } from "@/shared/components/layout/ClientWrapper/ClientWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -29,7 +30,7 @@ export default function RootLayout({
           <a href="#main-content" className="skip-to-main">
             Skip to main content
           </a>
-          <MainHeader></MainHeader>
+          <MainHeader />
           <main id="main-content">
             {children}
           </main>

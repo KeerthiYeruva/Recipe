@@ -1,0 +1,57 @@
+.theme-toggle {
+  background: transparent;
+  border: 2px solid var(--accent-primary);
+  border-radius: 4px;
+  color: var(--accent-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  line-height: 1;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+    transform 0.2s ease;
+
+  .icon {
+    display: block;
+    font-size: 1.2rem;
+    transform: translateY(-0.02em);
+  }
+
+  &:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--accent-secondary);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: background-color 0.01ms linear, border-color 0.01ms linear,
+      color 0.01ms linear;
+
+    &:hover,
+    &:active {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 2.75rem;
+    height: 2.75rem;
+
+    .icon {
+      font-size: 1rem;
+    }
+  }
+}

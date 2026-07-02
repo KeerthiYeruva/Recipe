@@ -1,9 +1,10 @@
 "use client";
 
-import shareMeal from "@/lib/actions";
-import ImagePicker from "../../../Components/meals/ImagePicker/ImagePicker";
+import { shareMealAction } from "@/features/meals/actions/share-meal.action";
+import { ImagePicker } from "@/features/meals/components/ImagePicker/ImagePicker";
 import "./share-meal.scss";
-import { MealsFormSubmit } from "@/Components/meals/FormSubmit";
+import { MealFormSubmit } from "@/features/meals/components/MealFormSubmit/MealFormSubmit";
+import type { FormState } from "@/shared/types/form.types";
 import { useFormState } from "react-dom";
 
 // Define initial state
@@ -11,7 +12,7 @@ const initialState: FormState = { status: "", errors: [] };
 
 export default function ShareMealPage() {
   // Use useFormState hook
-  const [state, formAction] = useFormState(shareMeal, initialState);
+  const [state, formAction] = useFormState(shareMealAction, initialState);
 
   return (
     <>
@@ -98,7 +99,7 @@ export default function ShareMealPage() {
             </div>
           )}
           <p className={"actions"}>
-            <MealsFormSubmit />
+            <MealFormSubmit />
           </p>
         </form>
       </section>
