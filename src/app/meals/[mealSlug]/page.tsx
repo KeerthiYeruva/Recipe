@@ -20,6 +20,16 @@ interface MealsDetailPageProps {
   }>;
 }
 
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const meals = await getMeals();
+
+  return meals.map((meal) => ({
+    mealSlug: meal.slug,
+  }));
+}
+
 export default async function MealsDetailPage({ params }: MealsDetailPageProps) {
   const { mealSlug } = await params;
   const meal = getMealBySlug(mealSlug);
