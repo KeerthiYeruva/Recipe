@@ -16,6 +16,7 @@ export function ThemeToggle() {
       aria-pressed={theme === "dark"}
       title={`Switch to ${nextTheme} theme`}
     >
+      <span className={styles.label}>{theme === "dark" ? "Light" : "Dark"}</span>
       <span className={styles.icon} aria-hidden="true">
         {theme === "dark" ? "☀️" : "🌙"}
       </span>

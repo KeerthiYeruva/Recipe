@@ -1,65 +1,32 @@
 export default function MealDetailLoading() {
   return (
-    <div aria-busy="true" aria-label="Loading recipe details">
-      <div className="back-button-container">
-        <div
-          style={{
-            height: "2rem",
-            width: "150px",
-            backgroundColor: "var(--bg-secondary)",
-            borderRadius: "4px",
-            animation: "pulse 2s infinite",
-          }}
-        />
-      </div>
-
-      <header className="header-md">
-        <div
-          className="image-md"
-          style={{
-            backgroundColor: "var(--bg-secondary)",
-            animation: "pulse 2s infinite",
-          }}
-        />
+    <div aria-busy="true" aria-label="Loading recipe details" className="status-shell">
+      <div
+        className="skeleton-block"
+        style={{ height: "1rem", width: "12rem", marginBottom: "1rem" }}
+      />
+      <header className="header-md" style={{ marginBottom: 0 }}>
+        <div className="image-md skeleton-card" />
         <div className="headerText" style={{ flex: 1 }}>
           <div
-            style={{
-              height: "2rem",
-              backgroundColor: "var(--bg-secondary)",
-              borderRadius: "4px",
-              marginBottom: "1rem",
-              animation: "pulse 2s infinite",
-            }}
+            className="skeleton-block"
+            style={{ height: "1rem", width: "7rem", marginBottom: "1rem" }}
           />
           <div
-            style={{
-              height: "1.5rem",
-              backgroundColor: "var(--bg-secondary)",
-              borderRadius: "4px",
-              marginBottom: "1rem",
-              width: "200px",
-              animation: "pulse 2s infinite",
-            }}
+            className="skeleton-block"
+            style={{ height: "3rem", width: "75%", marginBottom: "0.8rem" }}
           />
           <div
-            style={{
-              height: "1rem",
-              backgroundColor: "var(--bg-secondary)",
-              borderRadius: "4px",
-              marginBottom: "2rem",
-              width: "100%",
-              animation: "pulse 2s infinite",
-            }}
+            className="skeleton-block"
+            style={{ height: "1rem", width: "40%", marginBottom: "0.8rem" }}
           />
+          <div
+            className="skeleton-block"
+            style={{ height: "1rem", width: "100%", marginBottom: "1rem" }}
+          />
+          <div className="skeleton-block" style={{ height: "6rem", width: "100%" }} />
         </div>
       </header>
-
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-      `}</style>
     </div>
   );
 }

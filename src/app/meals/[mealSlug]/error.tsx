@@ -10,36 +10,15 @@ export default function MealDetailError({
   reset: () => void;
 }) {
   return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <h1 style={{ color: "var(--accent-primary)" }}>Failed to load recipe</h1>
-      <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>
-        {error.message}
-      </p>
-      <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
-        <button
-          onClick={reset}
-          style={{
-            padding: "0.5rem 1.5rem",
-            backgroundColor: "var(--accent-primary)",
-            color: "var(--text-light)",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
+    <div className="status-shell">
+      <span className="eyebrow">Recipe unavailable</span>
+      <h1>We couldn&apos;t load this recipe just now.</h1>
+      <p>{error.message}</p>
+      <div className="status-actions">
+        <button onClick={reset} className="button-primary" type="button">
           Try Again
         </button>
-        <Link
-          href="/meals"
-          style={{
-            padding: "0.5rem 1.5rem",
-            backgroundColor: "var(--bg-secondary)",
-            color: "var(--text-primary)",
-            textDecoration: "none",
-            borderRadius: "4px",
-            display: "inline-block",
-          }}
-        >
+        <Link href="/meals" className="button-secondary">
           Back to Recipes
         </Link>
       </div>

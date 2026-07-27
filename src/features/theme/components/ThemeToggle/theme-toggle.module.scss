@@ -1,62 +1,66 @@
 .theme-toggle {
-  background: transparent;
-  border: 2px solid var(--accent-primary);
-  border-radius: 4px;
-  color: var(--accent-primary);
+  background: var(--surface-soft);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text-primary);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.55rem;
   flex: 0 0 auto;
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 0;
+  min-width: 2.9rem;
+  min-height: 2.9rem;
+  padding: 0.5rem 0.75rem;
   line-height: 1;
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
     color 0.2s ease,
     transform 0.2s ease;
+}
 
-  .icon {
-    display: block;
-    font-size: 1.2rem;
-    transform: translateY(-0.02em);
-  }
+.label {
+  font-size: 0.85rem;
+  font-weight: 800;
+}
 
-  &:hover {
-    background: var(--accent-primary);
-    color: white;
-    transform: scale(1.05);
-  }
+.icon {
+  display: block;
+  font-size: 1rem;
+  transform: translateY(-0.02em);
+}
 
-  &:active {
-    transform: scale(0.95);
-  }
+.theme-toggle:hover {
+  background: var(--surface-strong);
+  transform: translateY(-1px);
+}
 
-  &:focus-visible {
-    outline: 3px solid var(--accent-secondary);
-    outline-offset: 3px;
-  }
+.theme-toggle:active {
+  transform: translateY(0);
+}
 
-  @media (prefers-reduced-motion: reduce) {
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--accent-secondary);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle {
     transition:
       background-color 0.01ms linear,
       border-color 0.01ms linear,
       color 0.01ms linear;
-
-    &:hover,
-    &:active {
-      transform: none;
-    }
   }
 
-  @media (max-width: 768px) {
-    width: 2.75rem;
-    height: 2.75rem;
+  .theme-toggle:hover,
+  .theme-toggle:active {
+    transform: none;
+  }
+}
 
-    .icon {
-      font-size: 1rem;
-    }
+@media (max-width: 768px) {
+  .label {
+    display: none;
   }
 }

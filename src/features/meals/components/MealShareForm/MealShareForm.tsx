@@ -15,8 +15,11 @@ export function MealShareForm() {
 
   return (
     <form className="form" action={formAction}>
-      <fieldset>
-        <legend className="sr-only">Creator Information</legend>
+      <fieldset className="form-card">
+        <legend>About you</legend>
+        <p className="fieldset-copy">
+          Add your name and email so the recipe still feels personal and traceable.
+        </p>
         <div className="row">
           <p>
             <label htmlFor="name">Your name</label>
@@ -24,6 +27,7 @@ export function MealShareForm() {
               type="text"
               id="name"
               name="name"
+              placeholder="Keerthi"
               aria-label="Your full name"
               required
             />
@@ -34,14 +38,19 @@ export function MealShareForm() {
               type="email"
               id="email"
               name="email"
+              placeholder="cook@example.com"
               aria-label="Your email address"
               required
             />
           </p>
         </div>
       </fieldset>
-      <fieldset>
-        <legend className="sr-only">Recipe Details</legend>
+      <fieldset className="form-card">
+        <legend>Recipe details</legend>
+        <p className="fieldset-copy">
+          Keep the summary concise and write the instructions exactly how you would want
+          someone else to follow them.
+        </p>
         <p>
           <label htmlFor="title">Title</label>
           <input type="text" id="title" name="title" aria-label="Recipe title" required />
@@ -129,7 +138,7 @@ export function MealShareForm() {
       </fieldset>
       {state.status === "error" && (
         <div className="error-messages" role="alert">
-          <h2 className="sr-only">Form submission errors</h2>
+          <h2>There are a few things to fix before sharing.</h2>
           {(state.errors ?? []).map((error, index) => (
             <p key={index} className="error">
               {error}

@@ -1,19 +1,20 @@
 .header-favorites {
-  width: 90%;
-  max-width: 75rem;
-  margin: 3rem auto 2rem auto;
+  width: var(--container-width);
+  margin: 2.5rem auto 2rem;
   color: var(--text-primary);
 }
 
 .header-favorites h1 {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
-  font-size: 3rem;
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  line-height: 1;
 }
 
 .header-favorites p {
   color: var(--text-secondary);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  max-width: 38rem;
 }
 
 @media (max-width: 768px) {

@@ -33,8 +33,18 @@ export function useMealsExplorer({
     sortBy
   );
 
+  const hasActiveFilters = searchTerm.trim().length > 0 || selectedCategory !== "All";
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setSelectedCategory("All");
+    setSortBy(initialSort);
+  };
+
   return {
     filteredMeals,
+    hasActiveFilters,
+    clearFilters,
     searchTerm,
     setSearchTerm,
     selectedCategory,

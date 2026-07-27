@@ -1,89 +1,104 @@
 .header-sm {
-  gap: 3rem;
-  margin: 3rem auto 5rem auto;
-  width: 90%;
-  max-width: 75rem;
+  width: var(--container-width);
+  margin: 2.5rem auto 2rem;
   color: var(--text-primary);
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+
   h1 {
-    font-family: "Montserrat", sans-serif;
+    margin: 0.9rem 0 0.75rem;
+    font-family: var(--font-display), serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1;
   }
 }
 
-@media (max-width: 768px) {
-  .header-sm {
-    gap: 1.5rem;
-    margin: 1.5rem auto 2.5rem auto;
-    font-size: 1.2rem;
-  }
+.header-sm p {
+  max-width: 44rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1.08rem;
 }
 
-@media (max-width: 480px) {
-  .header-sm {
-    gap: 1rem;
-    margin: 1rem auto 2rem auto;
-    font-size: 1rem;
-  }
-}
 .highlight {
   background: linear-gradient(90deg, var(--accent-primary), var(--accent-fourth));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .main-sm {
-  width: 90%;
-  max-width: 75rem;
-  margin: 3rem auto;
+  width: var(--container-width);
+  margin: 0 auto;
   color: var(--text-light);
-  transition: color 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .main-sm {
-    margin: 2rem auto;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-sm {
-    margin: 1rem auto;
-  }
-}
 .form {
-  max-width: 50rem;
+  display: grid;
+  gap: 1rem;
+  max-width: 54rem;
+
   label {
     display: block;
     margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    font-family: var(--font-body), sans-serif;
     text-transform: uppercase;
-    color: var(--accent-light-gray);
-    font-weight: bold;
-    transition: color 0.3s ease;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-weight: 800;
   }
 }
+
+.form-card {
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-elevated));
+  box-shadow: var(--shadow-md);
+}
+
+.form-card legend {
+  padding: 0 0.5rem;
+  font-family: var(--font-display), serif;
+  font-size: 1.5rem;
+}
+
+.fieldset-copy {
+  margin: 0 0 1.2rem;
+  color: var(--text-secondary);
+}
+
 .form input,
 .form textarea,
 .form select {
   display: block;
   width: 100%;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--form-border);
   background: var(--form-bg);
-  font-size: 1.25rem;
-  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-family: var(--font-body), sans-serif;
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
+
 .form input:focus,
 .form textarea:focus,
 .form select:focus {
   outline-color: var(--form-focus);
   background-color: var(--form-input);
+  box-shadow: 0 0 0 4px rgba(255, 178, 77, 0.15);
 }
+
+.form textarea {
+  min-height: 14rem;
+  resize: vertical;
+}
+
 .row {
   display: flex;
   gap: 1rem;
@@ -103,29 +118,47 @@
   }
 }
 .actions {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+
   button {
-    border: 0;
-    padding: 0.75rem 2rem;
-    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    min-height: 3.25rem;
+    padding: 0.85rem 1.6rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     border: none;
     color: var(--text-light);
-    border-radius: 2px;
+    border-radius: 999px;
     cursor: pointer;
     font: inherit;
-    font-size: 1.25rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 800;
+    box-shadow: var(--shadow-sm);
   }
 }
+
 .actions button:hover,
 .actions button:focus {
-  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  transform: translateY(-1px);
 }
+
 .actions button:disabled,
 .actions button:hover:disabled,
 .actions button:focus:disabled {
   background: var(--button-disabled-bg);
   color: var(--button-disabled-text);
   cursor: not-allowed;
+  transform: none;
+}
+
+.error-messages h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display), serif;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .header-sm {
+    margin-top: 2rem;
+  }
 }

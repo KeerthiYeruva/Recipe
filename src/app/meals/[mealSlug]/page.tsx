@@ -9,10 +9,7 @@ import { getRelatedMeals } from "@/features/meals/services/relatedMeals.service"
 import { FavoriteButton } from "@/features/meals/components/FavoriteButton/FavoriteButton";
 import { IngredientTools } from "@/features/meals/components/IngredientTools/IngredientTools";
 import { MealsGrid } from "@/features/meals/components/MealsGrid/MealsGrid";
-import {
-  formatInstructionsAsHtml,
-  parseIngredients,
-} from "@/features/meals/utils/meal-formatters";
+import { parseIngredients } from "@/features/meals/utils/meal-formatters";
 import "./meals-detail.scss";
 
 interface MealsDetailPageProps {
@@ -58,26 +55,39 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
   }
 
   const ingredients = parseIngredients(meal.ingredients);
-  const instructions = formatInstructionsAsHtml(meal.instructions);
+  const instructionSteps = meal.instructions
+    .split(/\n+/)
+    .map((step) => step.trim())
+    .filter(Boolean);
   const allMeals = await getMeals();
   const relatedMeals = getRelatedMeals(meal, allMeals, 3);
 
   return (
-    <>
-      <div className="back-button-container">
-        <Link href="/meals" className="back-button" aria-label="Back to all recipes">
-          ← Back to Recipes
-        </Link>
+    <div className="recipe-detail">
+      <div className="back-button-container page-shell">
+        <nav aria-label="Breadcrumb" className="breadcrumbs">
+          <Link href="/">Home</Link>
+          <span aria-hidden="true">/</span>
+          <Link href="/meals">Recipes</Link>
+          <span aria-hidden="true">/</span>
+          <span>{meal.title}</span>
+        </nav>
       </div>
-      <header className="header-md">
+      <header className="header-md page-shell">
         <div className="image-md">
           {meal.image && typeof meal.image === "string" ? (
-            <Image src={meal.image} fill alt={`${meal.title} - a delicious recipe`} />
+            <Image
+              src={meal.image}
+              fill
+              alt={`${meal.title} - a delicious recipe`}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           ) : (
             <p>No image available</p>
           )}
         </div>
         <div className="headerText">
+          <span className="eyebrow">{meal.category}</span>
           <h1>{meal.title}</h1>
           <p className="creator-md">
             by <strong>{meal.creator}</strong>
@@ -85,6 +95,9 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
           <p className="summary">{meal.summary}</p>
           <div className="detail-tools">
             <FavoriteButton slug={meal.slug} title={meal.title} />
+            <Link href="/meals" className="button-ghost">
+              Back to recipes
+            </Link>
           </div>
           <dl className="recipe-meta">
             <div>
@@ -112,26 +125,55 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
       </header>
 
       {ingredients.length > 0 && (
-        <section aria-label="Recipe ingredients" className="ingredients-section">
-          <h2>Ingredients</h2>
-          <IngredientTools ingredients={ingredients} />
+        <section
+          aria-label="Recipe ingredients"
+          className="ingredients-section page-shell"
+        >
+          <div className="section-block__header">
+            <div>
+              <span className="eyebrow">Ingredients</span>
+              <h2>Gather, scale, and check things off as you cook.</h2>
+            </div>
+            <p>
+              Serving-size updates apply only to quantities that can be parsed safely.
+            </p>
+          </div>
+          <IngredientTools ingredients={ingredients} servings={meal.servings} />
         </section>
       )}
 
-      <section aria-label="Recipe instructions">
-        <h2 className="sr-only">Instructions</h2>
-        <p
-          className="instructions-md"
-          dangerouslySetInnerHTML={{ __html: instructions }}
-        />
+      <section
+        aria-label="Recipe instructions"
+        className="instructions-section page-shell"
+      >
+        <div className="section-block__header">
+          <div>
+            <span className="eyebrow">Method</span>
+            <h2>Cook through the steps without losing your place.</h2>
+          </div>
+        </div>
+        <ol className="instructions-md">
+          {instructionSteps.map((step, index) => (
+            <li key={`${step}-${index}`}>
+              <span>{index + 1}</span>
+              <p>{step}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
       {relatedMeals.length > 0 && (
-        <section className="related-recipes" aria-label="Related recipes">
-          <h2>You may also like</h2>
+        <section className="related-recipes page-section" aria-label="Related recipes">
+          <div className="section-block__header">
+            <div>
+              <span className="eyebrow">Related recipes</span>
+              <h2>You may also like</h2>
+            </div>
+            <p>More dishes with similar ingredients or a matching category.</p>
+          </div>
           <MealsGrid meals={relatedMeals} />
         </section>
       )}
-    </>
+    </div>
   );
 }
