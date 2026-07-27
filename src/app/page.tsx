@@ -15,9 +15,6 @@ const categoryDescriptions: Record<string, string> = {
 
 const Home = async () => {
   const meals = await getMeals();
-  const quickMeals = [...meals]
-    .filter((meal) => meal.prep_time <= 10)
-    .sort((firstMeal, secondMeal) => firstMeal.prep_time - secondMeal.prep_time);
   const categories = Array.from(
     new Map(
       meals.map((meal) => [
@@ -91,46 +88,6 @@ const Home = async () => {
               </p>
               <span className="category-card__anchor">Try {category.meal}</span>
             </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="home-section page-section" aria-labelledby="quick-meals-title">
-        <div className="home-section__split">
-          <div>
-            <h2 id="quick-meals-title" className="section-title">
-              Quick Recipes for Busy Days
-            </h2>
-            <p className="section-copy">
-              Healthy and delicious recipes you can prepare in 10 minutes or less.
-            </p>
-          </div>
-          <Link href="/meals" className="button-ghost">
-            View all recipes
-          </Link>
-        </div>
-        <div className="quick-list" role="list">
-          {quickMeals.slice(0, 4).map((meal) => (
-            <Link
-              key={meal.slug}
-              href={`/meals/${meal.slug}`}
-              className="quick-list__item"
-            >
-              <div>
-                <span>{meal.category}</span>
-                <h3>{meal.title}</h3>
-              </div>
-              <dl>
-                <div>
-                  <dt>Prep</dt>
-                  <dd>{meal.prep_time} min</dd>
-                </div>
-                <div>
-                  <dt>Calories</dt>
-                  <dd>{meal.calories} kcal</dd>
-                </div>
-              </dl>
-            </Link>
           ))}
         </div>
       </section>

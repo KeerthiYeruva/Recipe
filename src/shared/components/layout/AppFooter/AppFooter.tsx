@@ -1,14 +1,4 @@
-import Link from "next/link";
-
 import "./app-footer.scss";
-
-const footerLinks = [
-  { href: "/", label: "Home" },
-  { href: "/meals", label: "Recipes" },
-  { href: "/favorites", label: "Favorites" },
-  { href: "/meals/share", label: "Share Recipe" },
-  { href: "/community", label: "Community" },
-];
 
 export function AppFooter() {
   return (
@@ -22,13 +12,6 @@ export function AppFooter() {
             save busy weeknights.
           </p>
         </div>
-        <nav aria-label="Footer navigation" className="app-footer__nav">
-          {footerLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
-              {link.label}
-            </Link>
-          ))}
-        </nav>
       </div>
     </footer>
   );
