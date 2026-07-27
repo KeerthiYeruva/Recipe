@@ -1,4 +1,4 @@
-import { db } from "@/shared/lib/db/sqlite";
+import { db } from "@/core/db/sqlite";
 import slugify from "slugify";
 
 import type { Meal, PersistedMealInput } from "../types/meal.types";

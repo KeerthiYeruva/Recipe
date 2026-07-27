@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 
 import { getMealBySlug } from "@/features/meals/repositories/meal.repository";
 import { getMeals } from "@/features/meals/repositories/meal.repository";
+import { getRelatedMeals } from "@/features/meals/services/relatedMeals.service";
 import { FavoriteButton } from "@/features/meals/components/FavoriteButton/FavoriteButton";
 import { IngredientTools } from "@/features/meals/components/IngredientTools/IngredientTools";
 import { MealsGrid } from "@/features/meals/components/MealsGrid/MealsGrid";
 import {
   formatInstructionsAsHtml,
-  getSharedIngredientCount,
   parseIngredients,
 } from "@/features/meals/utils/meal-formatters";
 import "./meals-detail.scss";
@@ -30,6 +31,24 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: MealsDetailPageProps): Promise<Metadata> {
+  const { mealSlug } = await params;
+  const meal = getMealBySlug(mealSlug);
+
+  if (!meal) {
+    return {
+      title: "Recipe Not Found",
+    };
+  }
+
+  return {
+    title: `${meal.title} | Recipe App`,
+    description: meal.summary,
+  };
+}
+
 export default async function MealsDetailPage({ params }: MealsDetailPageProps) {
   const { mealSlug } = await params;
   const meal = getMealBySlug(mealSlug);
@@ -41,18 +60,7 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
   const ingredients = parseIngredients(meal.ingredients);
   const instructions = formatInstructionsAsHtml(meal.instructions);
   const allMeals = await getMeals();
-  const relatedMeals = allMeals
-    .filter((relatedMeal) => relatedMeal.slug !== meal.slug)
-    .map((relatedMeal) => ({
-      meal: relatedMeal,
-      score:
-        (relatedMeal.category === meal.category ? 2 : 0) +
-        getSharedIngredientCount(meal.ingredients, relatedMeal.ingredients),
-    }))
-    .filter(({ score }) => score > 0)
-    .sort((firstMeal, secondMeal) => secondMeal.score - firstMeal.score)
-    .slice(0, 3)
-    .map(({ meal: relatedMeal }) => relatedMeal);
+  const relatedMeals = getRelatedMeals(meal, allMeals, 3);
 
   return (
     <>

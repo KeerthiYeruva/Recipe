@@ -1,7 +1,5 @@
-import React from "react";
-
-import { MealItem } from "../MealItem/MealItem";
 import type { Meal } from "../../types/meal.types";
+import { MealCard } from "../MealCard/MealCard";
 import "./meals-grid.scss";
 
 interface MealsGridProps {
@@ -14,7 +12,7 @@ export function MealsGrid({ meals }: MealsGridProps) {
       <ul className="meals-g" role="list">
         {meals.map((meal) => (
           <li key={meal.id} role="listitem">
-            <MealItem {...meal} />
+            <MealCard {...meal} />
           </li>
         ))}
       </ul>

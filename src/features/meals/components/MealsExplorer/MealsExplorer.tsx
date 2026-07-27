@@ -1,65 +1,29 @@
 "use client";
 
-import { useDeferredValue, useState } from "react";
-
 import type { Meal } from "../../types/meal.types";
+import {
+  MEAL_CATEGORIES,
+  MEAL_SORT_OPTIONS,
+  type MealSortOption,
+} from "../../constants/meal.constants";
 import { MealsGrid } from "../MealsGrid/MealsGrid";
+import { useMealsExplorer } from "../../hooks/useMealsExplorer";
 import "./meals-explorer.scss";
-
-const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Snacks", "Drinks"];
-
-const sortOptions = [
-  { label: "Newest First", value: "newest" },
-  { label: "Oldest First", value: "oldest" },
-  { label: "Recipe Name A-Z", value: "title-asc" },
-  { label: "Recipe Name Z-A", value: "title-desc" },
-];
 
 interface MealsExplorerProps {
   meals: Meal[];
 }
 
 export function MealsExplorer({ meals }: MealsExplorerProps) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [sortBy, setSortBy] = useState("newest");
-  const deferredSearchTerm = useDeferredValue(searchTerm.trim().toLowerCase());
-
-  const filteredMeals = meals
-    .filter((meal) => {
-      const matchesCategory =
-        selectedCategory === "All" || meal.category === selectedCategory;
-
-      if (!deferredSearchTerm) {
-        return matchesCategory;
-      }
-
-      const searchableText = [
-        meal.title,
-        meal.creator,
-        meal.category,
-        ...parseIngredients(meal.ingredients),
-      ]
-        .join(" ")
-        .toLowerCase();
-
-      return matchesCategory && searchableText.includes(deferredSearchTerm);
-    })
-    .sort((firstMeal, secondMeal) => {
-      if (sortBy === "oldest") {
-        return firstMeal.id - secondMeal.id;
-      }
-
-      if (sortBy === "title-asc") {
-        return firstMeal.title.localeCompare(secondMeal.title);
-      }
-
-      if (sortBy === "title-desc") {
-        return secondMeal.title.localeCompare(firstMeal.title);
-      }
-
-      return secondMeal.id - firstMeal.id;
-    });
+  const {
+    filteredMeals,
+    searchTerm,
+    setSearchTerm,
+    selectedCategory,
+    setSelectedCategory,
+    sortBy,
+    setSortBy,
+  } = useMealsExplorer({ meals });
 
   return (
     <section className="meals-explorer" aria-label="Find recipes">
@@ -81,7 +45,8 @@ export function MealsExplorer({ meals }: MealsExplorerProps) {
             value={selectedCategory}
             onChange={(event) => setSelectedCategory(event.target.value)}
           >
-            {categories.map((category) => (
+            <option value="All">All</option>
+            {MEAL_CATEGORIES.map((category) => (
               <option key={category} value={category}>
                 {category}
               </option>
@@ -93,9 +58,9 @@ export function MealsExplorer({ meals }: MealsExplorerProps) {
           <select
             id="meal-sort"
             value={sortBy}
-            onChange={(event) => setSortBy(event.target.value)}
+            onChange={(event) => setSortBy(event.target.value as MealSortOption)}
           >
-            {sortOptions.map((option) => (
+            {MEAL_SORT_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -115,13 +80,4 @@ export function MealsExplorer({ meals }: MealsExplorerProps) {
       )}
     </section>
   );
-}
-
-function parseIngredients(ingredients: string): string[] {
-  try {
-    const parsedIngredients = JSON.parse(ingredients);
-    return Array.isArray(parsedIngredients) ? parsedIngredients : [];
-  } catch {
-    return [];
-  }
 }
