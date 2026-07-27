@@ -141,6 +141,7 @@ a {
 
 /* Skip to main content link - hidden by default, visible on focus */
 .skip-to-main {
+  display: none;
   position: absolute;
   top: -40px;
   left: 1rem;
