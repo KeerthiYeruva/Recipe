@@ -36,11 +36,10 @@ export function MainHeader() {
   return (
     <header className="site-header" role="banner">
       <div className="site-header__inner">
-        <Link className="site-header__logo" href="/" aria-label="Savory Table Home">
+        <Link className="site-header__logo" href="/" aria-label="Recipes Home">
           <Image src={Logo} alt="" priority />
           <span>
-            <strong>Savory Table</strong>
-            <small>Fast recipes for real evenings</small>
+            <strong>Recipes</strong>
           </span>
         </Link>
         <div className="site-header__actions">

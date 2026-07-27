@@ -5,19 +5,16 @@ import { ImageSlideshow } from "@/shared/components/media/ImageSlideshow/ImageSl
 import { getMeals } from "@/features/meals/repositories/meal.repository";
 
 const categoryDescriptions: Record<string, string> = {
-  Breakfast: "Bright starts, make-ahead bowls, and easy first bites.",
-  Lunch: "Fast midday plates with crisp textures and clean flavor.",
-  Dinner: "Comforting meals that still fit a weeknight window.",
-  Dessert: "Small sweet finishes that feel worth making.",
-  Snacks: "Sharable bites for cravings, guests, or rainy afternoons.",
-  Drinks: "Cooling pours and quick blends for a lighter reset.",
+  Breakfast: "Easy morning options to start your day.",
+  Lunch: "Quick midday recipes that satisfy.",
+  Dinner: "Fast dinners that taste great.",
+  Dessert: "Simple sweet finishes worth making.",
+  Snacks: "Easy snacks and shareable bites.",
+  Drinks: "Quick and refreshing drink ideas.",
 };
 
 const Home = async () => {
   const meals = await getMeals();
-  const popularMeals = [...meals].sort(
-    (firstMeal, secondMeal) => secondMeal.id - firstMeal.id
-  );
   const quickMeals = [...meals]
     .filter((meal) => meal.prep_time <= 10)
     .sort((firstMeal, secondMeal) => firstMeal.prep_time - secondMeal.prep_time);
@@ -38,18 +35,17 @@ const Home = async () => {
     <div className="home-page">
       <header className="home-hero page-shell">
         <div className="home-hero__content">
-          <span className="eyebrow">Weeknight cooking, elevated</span>
-          <h1>Recipes that feel thoughtful, even when dinner needs to move fast.</h1>
-          <p>
-            Savory Table helps you find polished, approachable recipes with quick prep,
-            warm flavors, and enough flexibility for real schedules.
+          <h1>Quick and Delicious Recipes for Busy Days</h1>
+          <p>Short on time, not on flavor! Explore our quick recipes now. 🕒</p>
+          <p className="supporting-text">
+            Healthy and delicious recipes ready in 10 minutes or less.
           </p>
           <div className="home-hero__actions">
             <Link href="/meals" className="button-primary">
-              Search recipes
+              Explore Recipes
             </Link>
-            <Link href="/meals/share" className="button-secondary">
-              Share your recipe
+            <Link href="/meals" className="button-secondary">
+              Browse Categories
             </Link>
           </div>
           <dl className="home-hero__stats">
@@ -77,13 +73,11 @@ const Home = async () => {
         aria-labelledby="browse-categories-title"
       >
         <div className="home-section__heading">
-          <span className="eyebrow">Browse by category</span>
           <h2 id="browse-categories-title" className="section-title">
-            Pick a mood, then let dinner take shape.
+            Browse by Category
           </h2>
           <p className="section-copy">
-            The collection already spans easy breakfasts, snackable bites, and lighter
-            desserts, so browsing is as useful as searching.
+            Find quick recipes for breakfast, lunch, dinner, snacks, desserts, and drinks.
           </p>
         </div>
         <div className="category-grid">
@@ -101,54 +95,15 @@ const Home = async () => {
         </div>
       </section>
 
-      <section
-        className="home-section page-section"
-        aria-labelledby="popular-recipes-title"
-      >
-        <div className="home-section__split">
-          <div>
-            <span className="eyebrow">Cooking inspiration</span>
-            <h2 id="popular-recipes-title" className="section-title">
-              Start with the recipes people would reach for first.
-            </h2>
-          </div>
-          <p className="section-copy">
-            A curated mix of the newest additions, crowd-pleasing categories, and dishes
-            with a strong balance of convenience and comfort.
-          </p>
-        </div>
-        <div className="feature-grid">
-          {popularMeals.slice(0, 3).map((meal) => (
-            <Link key={meal.slug} href={`/meals/${meal.slug}`} className="feature-card">
-              <span className="feature-card__meta">{meal.category}</span>
-              <h3>{meal.title}</h3>
-              <p>{meal.summary}</p>
-              <dl>
-                <div>
-                  <dt>Prep</dt>
-                  <dd>{meal.prep_time} min</dd>
-                </div>
-                <div>
-                  <dt>Level</dt>
-                  <dd>{meal.difficulty}</dd>
-                </div>
-                <div>
-                  <dt>By</dt>
-                  <dd>{meal.creator}</dd>
-                </div>
-              </dl>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       <section className="home-section page-section" aria-labelledby="quick-meals-title">
         <div className="home-section__split">
           <div>
-            <span className="eyebrow">Quick meals</span>
             <h2 id="quick-meals-title" className="section-title">
-              Fast enough for a workday, good enough for a repeat request.
+              Quick Recipes for Busy Days
             </h2>
+            <p className="section-copy">
+              Healthy and delicious recipes you can prepare in 10 minutes or less.
+            </p>
           </div>
           <Link href="/meals" className="button-ghost">
             View all recipes
@@ -182,13 +137,12 @@ const Home = async () => {
 
       <section className="home-cta page-shell" aria-labelledby="share-cta-title">
         <div className="home-cta__panel">
-          <span className="eyebrow">Share your recipe</span>
           <h2 id="share-cta-title" className="section-title">
-            Have a go-to recipe that saves your week? Add it to the table.
+            Share a Quick Recipe
           </h2>
           <p className="section-copy">
-            Keep the existing recipe flow, but make the collection feel like a living food
-            product shaped by what people actually cook.
+            Have a healthy and delicious recipe that takes 10 minutes or less? Share it
+            with the community.
           </p>
           <div className="home-cta__actions">
             <Link href="/meals/share" className="button-primary">

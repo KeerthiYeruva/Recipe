@@ -41,7 +41,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${meal.title} | Recipe App`,
+    title: `${meal.title} | Recipes`,
     description: meal.summary,
   };
 }
@@ -95,15 +95,8 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
           <p className="summary">{meal.summary}</p>
           <div className="detail-tools">
             <FavoriteButton slug={meal.slug} title={meal.title} />
-            <Link href="/meals" className="button-ghost">
-              Back to recipes
-            </Link>
           </div>
           <dl className="recipe-meta">
-            <div>
-              <dt>Category</dt>
-              <dd>{meal.category}</dd>
-            </div>
             <div>
               <dt>Prep Time</dt>
               <dd>{meal.prep_time} mins</dd>
@@ -131,8 +124,10 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
         >
           <div className="section-block__header">
             <div>
-              <span className="eyebrow">Ingredients</span>
-              <h2>Gather, scale, and check things off as you cook.</h2>
+              <h2>Ingredients</h2>
+              <p className="supporting-text">
+                Adjust servings and check items off as you cook.
+              </p>
             </div>
             <p>
               Serving-size updates apply only to quantities that can be parsed safely.
@@ -148,8 +143,8 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
       >
         <div className="section-block__header">
           <div>
-            <span className="eyebrow">Method</span>
-            <h2>Cook through the steps without losing your place.</h2>
+            <h2>Instructions</h2>
+            <p className="supporting-text">Follow each step at your own pace.</p>
           </div>
         </div>
         <ol className="instructions-md">
@@ -166,10 +161,11 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
         <section className="related-recipes page-section" aria-label="Related recipes">
           <div className="section-block__header">
             <div>
-              <span className="eyebrow">Related recipes</span>
-              <h2>You may also like</h2>
+              <h2>You May Also Like</h2>
+              <p className="supporting-text">
+                More quick recipes with similar ingredients or categories.
+              </p>
             </div>
-            <p>More dishes with similar ingredients or a matching category.</p>
           </div>
           <MealsGrid meals={relatedMeals} />
         </section>

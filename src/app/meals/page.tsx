@@ -12,14 +12,8 @@ const MealsPage = async () => {
     <>
       <header className="header-m">
         <div>
-          <span className="eyebrow">Recipe library</span>
-          <h1>
-            Find a recipe that fits the time you have, not just the craving you feel.
-          </h1>
-          <p>
-            Explore polished quick meals, lighter desserts, and repeat-worthy snacks with
-            search, filters, and browser-saved favorites.
-          </p>
+          <h1>Quick and Healthy Recipes</h1>
+          <p>Explore delicious recipes you can prepare in 10 minutes or less.</p>
         </div>
         <div className="header-m__aside">
           <dl>
