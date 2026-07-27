@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import "./globals.scss";
 import { MainHeader } from "@/shared/components/layout/MainHeader/MainHeader";
 import { ClientWrapper } from "@/shared/components/layout/ClientWrapper/ClientWrapper";
-import { AppFooter } from "@/shared/components/layout/AppFooter/AppFooter";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -42,7 +41,6 @@ export default function RootLayout({
           </a>
           <MainHeader />
           <main id="main-content">{children}</main>
-          <AppFooter />
         </ClientWrapper>
       </body>
     </html>
