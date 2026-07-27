@@ -22,9 +22,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Savory Table | Quick Meals and Favorites",
+  title: "Recipes | Quick and Delicious Meals",
   description:
-    "Discover, save, and share feel-good recipes with a polished local-first cooking experience.",
+    "Quick and delicious recipes for busy days. Find healthy, homemade recipes ready in 10 minutes or less.",
 };
 
 export default function RootLayout({
