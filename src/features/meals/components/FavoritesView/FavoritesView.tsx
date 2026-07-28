@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import type { Meal } from "../../types/meal.types";
-import { FAVORITE_MEALS_STORAGE_KEY, getFavoriteMealSlugs } from "../../utils/favorites";
+import { useFavoriteMealSlugs } from "../../hooks/useFavoriteMealSlugs";
+import { FAVORITE_MEALS_STORAGE_KEY } from "../../utils/favorites";
 import { MealsGrid } from "../MealsGrid/MealsGrid";
 import "./favorites-view.scss";
 
@@ -13,17 +13,7 @@ interface FavoritesViewProps {
 }
 
 export function FavoritesView({ meals }: FavoritesViewProps) {
-  const [favoriteSlugs, setFavoriteSlugs] = useState<string[]>([]);
-
-  useEffect(() => {
-    const syncFavorites = () => setFavoriteSlugs(getFavoriteMealSlugs());
-
-    syncFavorites();
-    window.addEventListener("storage", syncFavorites);
-
-    return () => window.removeEventListener("storage", syncFavorites);
-  }, []);
-
+  const favoriteSlugs = useFavoriteMealSlugs();
   const favoriteMeals = meals.filter((meal) => favoriteSlugs.includes(meal.slug));
 
   return (

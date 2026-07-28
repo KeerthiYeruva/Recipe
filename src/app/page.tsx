@@ -3,6 +3,10 @@ import Link from "next/link";
 import "./page.scss";
 import { ImageSlideshow } from "@/shared/components/media/ImageSlideshow/ImageSlideshow";
 import { getMeals } from "@/features/meals/repositories/meal.repository";
+import {
+  getMealCategorySummaries,
+  getQuickestPrepTime,
+} from "@/features/meals/utils/meal-stats";
 
 const categoryDescriptions: Record<string, string> = {
   Breakfast: "Easy morning options to start your day.",
@@ -15,18 +19,8 @@ const categoryDescriptions: Record<string, string> = {
 
 const Home = async () => {
   const meals = await getMeals();
-  const categories = Array.from(
-    new Map(
-      meals.map((meal) => [
-        meal.category,
-        {
-          name: meal.category,
-          count: meals.filter((item) => item.category === meal.category).length,
-          meal: meal.title,
-        },
-      ])
-    ).values()
-  );
+  const categories = getMealCategorySummaries(meals);
+  const quickestPrepTime = getQuickestPrepTime(meals);
 
   return (
     <div className="home-page">
@@ -52,7 +46,7 @@ const Home = async () => {
             </div>
             <div>
               <dt>Quickest prep</dt>
-              <dd>{Math.min(...meals.map((meal) => meal.prep_time))} min</dd>
+              <dd>{quickestPrepTime !== null ? `${quickestPrepTime} min` : "N/A"}</dd>
             </div>
             <div>
               <dt>Categories</dt>
