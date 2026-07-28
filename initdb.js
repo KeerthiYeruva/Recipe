@@ -240,6 +240,7 @@ db.prepare(
 const existingColumns = db.prepare("PRAGMA table_info(meals)").all();
 const existingColumnNames = new Set(existingColumns.map((column) => column.name));
 const migrations = [
+  "ALTER TABLE meals ADD COLUMN ingredients TEXT NOT NULL DEFAULT '[]'",
   "ALTER TABLE meals ADD COLUMN category TEXT NOT NULL DEFAULT 'Snacks'",
   "ALTER TABLE meals ADD COLUMN prep_time INTEGER NOT NULL DEFAULT 10",
   "ALTER TABLE meals ADD COLUMN servings INTEGER NOT NULL DEFAULT 2",
@@ -254,6 +255,26 @@ for (const migration of migrations) {
     db.prepare(migration).run();
   }
 }
+
+const updateSeededMeal = db.prepare(`
+  UPDATE meals
+  SET
+    ingredients = @ingredients,
+    category = @category,
+    prep_time = @prep_time,
+    servings = @servings,
+    difficulty = @difficulty,
+    calories = @calories
+  WHERE slug = @slug
+`);
+
+const backfillSeededMeals = db.transaction((meals) => {
+  for (const meal of meals) {
+    updateSeededMeal.run(meal);
+  }
+});
+
+backfillSeededMeals(dummyMeals);
 
 async function initData() {
   const count = db.prepare("SELECT COUNT(*) as count FROM meals").get().count;
