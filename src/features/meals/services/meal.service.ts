@@ -10,7 +10,7 @@ export async function saveMeal(meal: CreateMealInput): Promise<void> {
   const safeInstructions = xss(meal.instructions);
   const imagePath = await saveMealImage(meal.title, meal.image);
 
-  createMeal({
+  await createMeal({
     ...meal,
     instructions: safeInstructions,
     image: imagePath,
