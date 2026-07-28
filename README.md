@@ -1,35 +1,92 @@
-# Recipe App
+# 🍳 Quick Recipes – Fast Meals for Busy Days
 
-A local-first recipe app built with Next.js. Users can browse quick meals, search recipes, filter by category, save favorites in the browser, open detailed cooking instructions, and share new recipes.
+Find and share quick, delicious recipes ready in 10 minutes or less. Browse by category, search by ingredients, save your favorites, and share your own recipes with the community.
+
+**[Try it now →](https://recipe-hazel-zeta.vercel.app)**
+
+---
+
+## What You Can Do
+
+✨ **Browse Recipes** — Explore a collection of quick meals across 6 categories: Breakfast, Lunch, Dinner, Desserts, Snacks, and Drinks.
+
+🔍 **Search & Filter** — Find recipes by title, creator, category, or ingredients. Sort by newest first or alphabetically.
+
+❤️ **Save Favorites** — Bookmark recipes you love. Your favorites are saved on your device and sync across tabs.
+
+👨‍🍳 **Detailed Instructions** — View full recipes with ingredients, prep time, servings, difficulty level, and calorie count. Check off ingredients as you cook.
+
+📤 **Share Recipes** — Submit your own quick recipes to the community with photos, ingredients, and step-by-step instructions.
+
+🌙 **Dark Mode** — Toggle between light and dark themes for comfortable browsing any time of day.
+
+---
+
+## Deployment
+
+This app is deployed live at **[recipe-hazel-zeta.vercel.app](https://recipe-hazel-zeta.vercel.app)**.
+
+### Hosting on Vercel (Free)
+
+The app works on Vercel's free tier:
+
+- **Favorites** are saved in your browser, so they work without a backend database
+- **Browsing** recipes works with the seeded database
+- **New submissions** are accepted but not persisted (due to serverless filesystem limitations)
+
+For a production app with persistent user submissions, consider upgrading to Supabase, Neon, Turso, or S3-compatible storage.
+
+---
+
+## For Developers
+
+A full-stack Next.js App Router project built for fast, accessible recipe discovery. Uses SQLite, server actions, TypeScript, and SCSS.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-149eca?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6-3178c6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![SQLite](https://img.shields.io/badge/SQLite-local-003b57?style=flat-square&logo=sqlite&logoColor=white)](https://sqlite.org/)
 
-## Overview
+### Quick Start (Local Setup)
 
-Recipe App is a full-stack Next.js App Router project focused on a practical recipe browsing experience. It uses SQLite for local meal storage, server actions for recipe submissions, SCSS for styling, and feature-oriented folders for meals and theme logic.
+Want to run the app locally? Here's how:
 
-The project is designed to work well as a portfolio or learning app on free hosting. Core browsing features are server-rendered, while browser-only features like favorites use `localStorage` so they do not require paid backend infrastructure.
+#### 1. Clone and install
 
-## Features
+```bash
+git clone https://github.com/KeerthiYeruva/Recipe.git
+cd Recipe
+npm install
+```
 
-| Area             | Details                                                                                    |
-| ---------------- | ------------------------------------------------------------------------------------------ |
-| Recipe browsing  | View seeded and submitted recipes from SQLite.                                             |
-| Search           | Search recipes by title, creator, category, and ingredients.                               |
-| Category filters | Filter meals by Breakfast, Lunch, Dinner, Dessert, Snacks, or Drinks.                      |
-| Sorting          | Sort by newest, oldest, recipe name A-Z, or recipe name Z-A.                               |
-| Recipe metadata  | Display category, prep time, servings, difficulty, and calories.                           |
-| Favorites        | Save favorite recipes in the browser with `localStorage` and view them on `/favorites`.    |
-| Ingredient tools | Check off ingredients while cooking and copy ingredients to the clipboard.                 |
-| Related recipes  | Show related recipes on recipe detail pages.                                               |
-| Recipe sharing   | Submit a recipe through a server action with validation and image upload.                  |
-| Theme support    | Toggle between light and dark themes through React context.                                |
-| Accessibility    | Includes semantic sections, labeled form controls, skip link support, and status messages. |
+#### 2. Set up the database
 
-## Tech Stack
+```bash
+node initdb.js
+```
+
+This creates a local SQLite database and seeds it with sample recipes.
+
+#### 3. Start developing
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+#### Available Commands
+
+| Command              | What It Does                      |
+| -------------------- | --------------------------------- |
+| `npm run dev`        | Start local development server    |
+| `npm run build`      | Create a production build         |
+| `npm run start`      | Run the production build locally  |
+| `npm run lint`       | Check code quality                |
+| `npm test`           | Run tests                         |
+| `npm run test:watch` | Run tests in watch mode           |
+
+### Tech Stack
 
 | Layer     | Technology                        |
 | --------- | --------------------------------- |
@@ -41,7 +98,7 @@ The project is designed to work well as a portfolio or learning app on free host
 | Forms     | Server actions and `useFormState` |
 | Utilities | `slugify`, `xss`, `sharp`         |
 
-## Routes
+### Routes
 
 | Route               | Purpose                                                                                  |
 | ------------------- | ---------------------------------------------------------------------------------------- |
@@ -52,7 +109,7 @@ The project is designed to work well as a portfolio or learning app on free host
 | `/favorites`        | Browser-saved favorite recipes.                                                          |
 | `/community`        | Community information page.                                                              |
 
-## Project Structure
+### Project Structure
 
 ```text
 src/
@@ -69,7 +126,7 @@ public/
 initdb.js                      SQLite schema, migrations, and seed data script
 ```
 
-## Data Flow
+### Data Flow
 
 ```mermaid
 flowchart LR
@@ -82,71 +139,26 @@ flowchart LR
   Repository --> DB[(SQLite meals.db)]
 ```
 
-Meal reads are loaded from SQLite through the meal repository. The `/meals` page passes those meals into a client-side explorer component for search, category filtering, and sorting.
+**Reading Recipes** — The `/meals` page loads all recipes from SQLite and passes them to the search/filter component. Users can search by name, creator, category, or ingredients. Sorting is done client-side with `useDeferredValue` for smooth UX.
 
-When a user shares a recipe, the form posts to `shareMealAction`. The action validates text fields, email, image, category, prep time, servings, difficulty, and calories. Valid instructions are sanitized with `xss`, the image is saved to `public/images`, and the meal is inserted into SQLite with a unique slug.
+**Sharing Recipes** — When a user submits via the form, the `shareMealAction` server action:
+1. Validates all fields (text, email, image, prep time, servings, difficulty, calories)
+2. Sanitizes instructions with `xss` to prevent injection
+3. Saves the image to `public/images`
+4. Inserts the meal into SQLite with a unique slug
+5. Triggers ISR revalidation to refresh static pages
 
-Favorites are different: they are saved only in the user's browser with `localStorage`. This keeps the feature free and simple, but favorites are device/browser-specific.
+**Saving Favorites** — Favorites are stored only in the browser with `localStorage` using `useSyncExternalStore` for optimal re-render performance. No backend required.
 
-## Getting Started
+### Environment Variables
 
-### 1. Install dependencies
-
-```bash
-npm install
-```
-
-### 2. Create and seed the database
-
-```bash
-node initdb.js
-```
-
-This creates `meals.db` and inserts the sample recipes. The app also includes lightweight SQLite column migrations for the recipe metadata fields.
-
-### 3. Start the development server
-
-```bash
-npm run dev
-```
-
-Open http://localhost:3000.
-
-## Commands
-
-| Command            | Description                                    |
-| ------------------ | ---------------------------------------------- |
-| `npm run dev`      | Start the local development server.            |
-| `npm run build`    | Create a production build.                     |
-| `npm run start`    | Run the production build.                      |
-| `npx tsc --noEmit` | Type-check the project without writing output. |
-
-## Environment Variables
-
-| Variable        | Purpose                                                                              |
-| --------------- | ------------------------------------------------------------------------------------ |
-| `DATABASE_PATH` | Optional path to a SQLite database file. Defaults to `meals.db` in the project root. |
+| Variable             | Purpose                                                                           |
+| -------------------- | --------------------------------------------------------------------------------- |
+| `DATABASE_PATH`      | Path to SQLite database. Defaults to `meals.db` in project root.                  |
+| `NEXT_PUBLIC_SITE_URL` | Base URL for sitemap/robots metadata. Defaults to `http://localhost:3000`.       |
 
 Example:
 
 ```bash
 DATABASE_PATH=./meals.db npm run dev
 ```
-
-## Deployment Notes
-
-This app can be hosted on Vercel's free plan for portfolio/demo use.
-
-Important production limitations:
-
-- SQLite is local file storage. It is convenient for local development, but not ideal for durable production writes on serverless hosting.
-- Uploaded images are written to `public/images`. On serverless platforms, this is not reliable permanent storage for user uploads.
-- Favorites are stored in `localStorage`, so they are saved per browser and do not require a server.
-
-For a production app with real user submissions, move the database and images to free hosted services such as Supabase, Neon, Turso, Cloudinary, Vercel Blob, or S3-compatible storage.
-
-## Current Status
-
-- TypeScript validation passes with `npx tsc --noEmit`.
-- The app has free-friendly recipe discovery, favorites, ingredient tools, and metadata features.
-- Local SQLite/native build issues can depend on the machine's Node and native package setup. Reinstall dependencies or rebuild `better-sqlite3` if needed on a new device.
