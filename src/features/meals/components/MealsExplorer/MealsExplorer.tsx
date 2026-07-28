@@ -6,7 +6,9 @@ import { useToast } from "@/shared/components/ui/ToastProvider/ToastProvider";
 import type { Meal } from "../../types/meal.types";
 import {
   MEAL_CATEGORIES,
+  MEAL_QUICK_FILTERS,
   MEAL_SORT_OPTIONS,
+  type MealQuickFilter,
   type MealSortOption,
 } from "../../constants/meal.constants";
 import { MealsGrid } from "../MealsGrid/MealsGrid";
@@ -15,9 +17,10 @@ import "./meals-explorer.scss";
 
 interface MealsExplorerProps {
   meals: Meal[];
+  initialCategory?: string;
 }
 
-export function MealsExplorer({ meals }: MealsExplorerProps) {
+export function MealsExplorer({ meals, initialCategory }: MealsExplorerProps) {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const { showToast } = useToast();
   const {
@@ -28,17 +31,26 @@ export function MealsExplorer({ meals }: MealsExplorerProps) {
     setSearchTerm,
     selectedCategory,
     setSelectedCategory,
+    quickFilter,
+    setQuickFilter,
     sortBy,
     setSortBy,
-  } = useMealsExplorer({ meals });
+  } = useMealsExplorer({ meals, initialCategory });
 
+  const selectedQuickFilter = MEAL_QUICK_FILTERS.find(
+    (filter) => filter.value === quickFilter
+  );
   const activeFilters = [
     searchTerm.trim() ? { key: "search", label: `Search: ${searchTerm.trim()}` } : null,
     selectedCategory !== "All"
       ? { key: "category", label: `Category: ${selectedCategory}` }
       : null,
+    selectedQuickFilter
+      ? { key: "quick", label: selectedQuickFilter.label }
+      : null,
   ].filter(
-    (value): value is { key: "search" | "category"; label: string } => value !== null
+    (value): value is { key: "search" | "category" | "quick"; label: string } =>
+      value !== null
   );
 
   const handleClearFilters = () => {
@@ -46,9 +58,14 @@ export function MealsExplorer({ meals }: MealsExplorerProps) {
     showToast("Filters cleared", "success");
   };
 
-  const removeFilter = (key: "search" | "category") => {
+  const removeFilter = (key: "search" | "category" | "quick") => {
     if (key === "search") {
       setSearchTerm("");
+      return;
+    }
+
+    if (key === "quick") {
+      setQuickFilter("all");
       return;
     }
 
@@ -83,6 +100,24 @@ export function MealsExplorer({ meals }: MealsExplorerProps) {
             </button>
           ) : null}
         </div>
+      </div>
+
+      <div className="quick-filters" aria-label="Quick recipe filters">
+        {MEAL_QUICK_FILTERS.map((filter) => (
+          <button
+            type="button"
+            key={filter.value}
+            className={quickFilter === filter.value ? "is-active" : ""}
+            aria-pressed={quickFilter === filter.value}
+            onClick={() =>
+              setQuickFilter((currentFilter: MealQuickFilter) =>
+                currentFilter === filter.value ? "all" : filter.value
+              )
+            }
+          >
+            {filter.label}
+          </button>
+        ))}
       </div>
 
       <div
@@ -136,7 +171,7 @@ export function MealsExplorer({ meals }: MealsExplorerProps) {
             <li key={filter.key}>
               <button type="button" onClick={() => removeFilter(filter.key)}>
                 {filter.label}
-                <span aria-hidden="true">×</span>
+                <span aria-hidden="true">x</span>
               </button>
             </li>
           ))}

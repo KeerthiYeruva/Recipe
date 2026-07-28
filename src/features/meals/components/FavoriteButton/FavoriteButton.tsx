@@ -50,7 +50,6 @@ export function FavoriteButton({ slug, title }: FavoriteButtonProps) {
         isFavorite ? "from" : "to"
       } favorites`}
     >
-      <span aria-hidden="true">{isFavorite ? "♥" : "♡"}</span>
       <span>{isFavorite ? "Saved" : "Save"}</span>
     </button>
   );

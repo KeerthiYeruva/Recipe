@@ -3,10 +3,26 @@ import Link from "next/link";
 
 import { getMeals } from "@/features/meals/repositories/meal.repository";
 import { MealsExplorer } from "@/features/meals/components/MealsExplorer/MealsExplorer";
+import {
+  MEAL_CATEGORIES,
+  type MealCategory,
+} from "@/features/meals/constants/meal.constants";
 
-const MealsPage = async () => {
+interface MealsPageProps {
+  searchParams?: Promise<{
+    category?: string;
+  }>;
+}
+
+const MealsPage = async ({ searchParams }: MealsPageProps) => {
   const meals = await getMeals();
   const quickMeals = meals.filter((meal) => meal.prep_time <= 10).length;
+  const resolvedSearchParams = await searchParams;
+  const requestedCategory = resolvedSearchParams?.category;
+  const initialCategory =
+    requestedCategory && MEAL_CATEGORIES.includes(requestedCategory as MealCategory)
+      ? requestedCategory
+      : "All";
 
   return (
     <>
@@ -37,7 +53,7 @@ const MealsPage = async () => {
         </div>
       </header>
       <section className="main" aria-label="Recipes">
-        <MealsExplorer meals={meals} />
+        <MealsExplorer meals={meals} initialCategory={initialCategory} />
       </section>
     </>
   );

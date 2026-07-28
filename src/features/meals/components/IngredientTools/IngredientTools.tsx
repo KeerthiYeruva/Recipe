@@ -110,7 +110,7 @@ export function IngredientTools({ ingredients, servings }: IngredientToolsProps)
             }
             aria-label="Decrease servings"
           >
-            −
+            -
           </button>
           <span>{selectedServings}</span>
           <button
