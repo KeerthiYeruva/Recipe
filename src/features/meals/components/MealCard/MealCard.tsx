@@ -6,6 +6,10 @@ import type { Meal } from "../../types/meal.types";
 import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
 import styles from "./meal-card.module.scss";
 
+interface MealCardProps extends Meal {
+  priority?: boolean;
+}
+
 export function MealCard({
   title,
   slug,
@@ -15,7 +19,8 @@ export function MealCard({
   servings,
   difficulty,
   calories,
-}: Meal) {
+  priority = false,
+}: MealCardProps) {
   const badge = prep_time <= 10 ? "Quick" : difficulty === "Easy" ? "Easy" : "New";
 
   return (
@@ -31,6 +36,7 @@ export function MealCard({
             alt={`${title} - a quick recipe`}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
+            priority={priority}
           />
           <div className={styles.imageOverlay} />
           <span className={styles.badge}>{badge}</span>

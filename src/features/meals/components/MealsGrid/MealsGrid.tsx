@@ -10,9 +10,9 @@ export function MealsGrid({ meals }: MealsGridProps) {
   return (
     <section aria-label="Available recipes">
       <ul className="meals-g" role="list">
-        {meals.map((meal) => (
+        {meals.map((meal, index) => (
           <li key={meal.id} role="listitem">
-            <MealCard {...meal} />
+            <MealCard {...meal} priority={index === 0} />
           </li>
         ))}
       </ul>

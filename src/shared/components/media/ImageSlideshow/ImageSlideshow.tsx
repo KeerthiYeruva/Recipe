@@ -42,6 +42,11 @@ export function ImageSlideshow() {
       role="region"
       aria-label="Featured recipes carousel"
       aria-live="polite"
+      style={{
+        position: "relative",
+        aspectRatio: "16 / 9",
+        overflow: "hidden",
+      }}
     >
       {images.map((image, index) => (
         <Image
