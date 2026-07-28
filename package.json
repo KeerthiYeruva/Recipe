@@ -11,6 +11,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "db:migrate": "tsx src/core/db/migrate.ts",
     "db:seed": "tsx src/core/db/seed.ts"
   },
   "dependencies": {
@@ -36,6 +37,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.2.12",
     "prettier": "^3.9.6",
+    "sqlite3": "^6.0.1",
     "tsx": "^4.7.0",
     "typescript": "^6",
     "vitest": "^4.1.10"
