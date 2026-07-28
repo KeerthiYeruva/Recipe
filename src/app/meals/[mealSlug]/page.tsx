@@ -8,6 +8,7 @@ import { getMeals } from "@/features/meals/repositories/meal.repository";
 import { getRelatedMeals } from "@/features/meals/services/relatedMeals.service";
 import { FavoriteButton } from "@/features/meals/components/FavoriteButton/FavoriteButton";
 import { IngredientTools } from "@/features/meals/components/IngredientTools/IngredientTools";
+import { CookingMode } from "@/features/meals/components/CookingMode/CookingMode";
 import { MealsGrid } from "@/features/meals/components/MealsGrid/MealsGrid";
 import { parseIngredients } from "@/features/meals/utils/meal-formatters";
 import "./meals-detail.scss";
@@ -95,6 +96,11 @@ export default async function MealsDetailPage({ params }: MealsDetailPageProps) 
           <p className="summary">{meal.summary}</p>
           <div className="detail-tools">
             <FavoriteButton slug={meal.slug} title={meal.title} />
+            <CookingMode
+              title={meal.title}
+              ingredients={ingredients}
+              instructionSteps={instructionSteps}
+            />
           </div>
           <dl className="recipe-meta">
             <div>

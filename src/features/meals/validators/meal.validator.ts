@@ -14,6 +14,7 @@ export function validateMealForm(meal: MealFormInput): MealValidationResult {
     "Instructions are required.",
     errors
   );
+  const ingredients = getRequiredIngredients(meal.ingredients, errors);
   const category = getRequiredText(meal.category, "Category is required.", errors);
   const difficulty = getRequiredText(meal.difficulty, "Difficulty is required.", errors);
   const prepTime = getRequiredPositiveNumber(
@@ -55,6 +56,7 @@ export function validateMealForm(meal: MealFormInput): MealValidationResult {
       title,
       summary,
       instructions,
+      ingredients,
       image: meal.image,
       category,
       prep_time: prepTime,
@@ -66,6 +68,27 @@ export function validateMealForm(meal: MealFormInput): MealValidationResult {
     },
     errors: [],
   };
+}
+
+function getRequiredIngredients(
+  value: FormDataEntryValue | null,
+  errors: string[]
+): string {
+  if (typeof value !== "string") {
+    errors.push("At least one ingredient is required.");
+    return JSON.stringify([]);
+  }
+
+  const ingredients = value
+    .split(/\r?\n/)
+    .map((ingredient) => ingredient.trim())
+    .filter(Boolean);
+
+  if (ingredients.length === 0) {
+    errors.push("At least one ingredient is required.");
+  }
+
+  return JSON.stringify(ingredients);
 }
 
 function getRequiredText(

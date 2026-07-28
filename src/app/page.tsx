@@ -27,7 +27,7 @@ const Home = async () => {
       <header className="home-hero page-shell">
         <div className="home-hero__content">
           <h1>Quick and Delicious Recipes for Busy Days</h1>
-          <p>Short on time, not on flavor! Explore our quick recipes now. 🕒</p>
+          <p>Short on time, not on flavor! Explore our quick recipes now.</p>
           <p className="supporting-text">
             Healthy and delicious recipes ready in 10 minutes or less.
           </p>
@@ -73,7 +73,11 @@ const Home = async () => {
         </div>
         <div className="category-grid">
           {categories.map((category) => (
-            <article key={category.name} className="category-card">
+            <Link
+              key={category.name}
+              href={`/meals?category=${encodeURIComponent(category.name)}`}
+              className="category-card"
+            >
               <span className="category-card__count">{category.count} recipes</span>
               <h3>{category.name}</h3>
               <p>
@@ -81,7 +85,7 @@ const Home = async () => {
                   "Fresh ideas from the recipe box."}
               </p>
               <span className="category-card__anchor">Try {category.meal}</span>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
