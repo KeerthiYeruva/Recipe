@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { saveMeal } from "../services/meal.service";
 import { validateMealForm } from "../validators/meal.validator";
 import type { MealFormInput } from "../types/meal.types";
@@ -43,6 +44,12 @@ export async function shareMealAction(
 
   try {
     await saveMeal(validation.data);
+    
+    if (!isVercelDeployment) {
+      revalidatePath("/meals");
+      revalidatePath("/");
+    }
+
     return {
       status: "success",
       errors: [],
