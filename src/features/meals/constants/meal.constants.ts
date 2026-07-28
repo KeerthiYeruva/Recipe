@@ -21,3 +21,11 @@ export const MEAL_SORT_OPTIONS = [
 ] as const;
 
 export type MealSortOption = (typeof MEAL_SORT_OPTIONS)[number]["value"];
+
+export const MEAL_QUICK_FILTERS = [
+  { label: "Under 10 min", value: "under-10" },
+  { label: "Easy", value: "easy" },
+  { label: "Under 300 kcal", value: "under-300" },
+] as const;
+
+export type MealQuickFilter = "all" | (typeof MEAL_QUICK_FILTERS)[number]["value"];

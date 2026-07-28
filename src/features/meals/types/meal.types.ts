@@ -19,6 +19,7 @@ export interface MealFormInput {
   title: FormDataEntryValue | null;
   summary: FormDataEntryValue | null;
   instructions: FormDataEntryValue | null;
+  ingredients: FormDataEntryValue | null;
   image: FormDataEntryValue | null;
   category: FormDataEntryValue | null;
   prep_time: FormDataEntryValue | null;

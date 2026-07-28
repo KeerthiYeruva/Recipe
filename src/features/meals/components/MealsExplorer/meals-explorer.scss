@@ -21,6 +21,7 @@
 
 .filters-toggle,
 .clear-filters,
+.quick-filters button,
 .active-filters button {
   display: inline-flex;
   align-items: center;
@@ -33,6 +34,25 @@
   color: var(--text-primary);
   cursor: pointer;
   font-weight: 800;
+}
+
+.quick-filters {
+  width: 90%;
+  max-width: 90rem;
+  margin: 0 auto 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.quick-filters button {
+  border-color: var(--border-subtle);
+}
+
+.quick-filters button.is-active {
+  border-color: var(--accent-secondary);
+  background: var(--accent-secondary);
+  color: var(--text-light);
 }
 
 .explorer-controls {

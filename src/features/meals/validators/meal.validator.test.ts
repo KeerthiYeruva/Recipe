@@ -7,6 +7,7 @@ const validMeal = (): MealFormInput => ({
   title: "  Oats Bowl  ",
   summary: "Fast breakfast",
   instructions: "Mix and serve",
+  ingredients: "1 cup oats\n1/2 cup milk",
   image: new File(["image"], "oats.jpg", { type: "image/jpeg" }),
   category: "Breakfast",
   prep_time: "5",
@@ -24,6 +25,7 @@ describe("validateMealForm", () => {
     expect(result.errors).toEqual([]);
     expect(result.data).toMatchObject({
       title: "Oats Bowl",
+      ingredients: JSON.stringify(["1 cup oats", "1/2 cup milk"]),
       prep_time: 5,
       servings: 2,
       calories: 320,
@@ -35,6 +37,7 @@ describe("validateMealForm", () => {
     const result = validateMealForm({
       ...validMeal(),
       title: "",
+      ingredients: "",
       image: null,
       prep_time: "0",
       creator_email: "not-an-email",
@@ -44,6 +47,7 @@ describe("validateMealForm", () => {
     expect(result.errors).toEqual(
       expect.arrayContaining([
         "Title is required.",
+        "At least one ingredient is required.",
         "Prep time must be a positive number.",
         "Invalid email format.",
         "Image is required.",

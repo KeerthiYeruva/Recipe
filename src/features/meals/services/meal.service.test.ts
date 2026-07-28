@@ -27,6 +27,7 @@ describe("saveMeal", () => {
       title: "Chocolate Cake",
       summary: "Quick dessert",
       instructions: "<script>alert('xss')</script>Mix well",
+      ingredients: JSON.stringify(["1 cup flour", "2 tbsp cocoa"]),
       image,
       category: "Dessert",
       prep_time: 12,

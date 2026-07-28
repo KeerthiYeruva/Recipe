@@ -15,6 +15,7 @@ export async function shareMealAction(
     title: formData.get("title"),
     summary: formData.get("summary"),
     instructions: formData.get("instructions"),
+    ingredients: formData.get("ingredients"),
     image: formData.get("image"),
     category: formData.get("category"),
     prep_time: formData.get("prep_time"),

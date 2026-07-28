@@ -134,6 +134,17 @@ export function MealShareForm() {
             required
           ></textarea>
         </p>
+        <p>
+          <label htmlFor="ingredients">Ingredients</label>
+          <textarea
+            id="ingredients"
+            name="ingredients"
+            rows={6}
+            placeholder={"1 cup oats\n1/2 cup milk\n1 banana"}
+            aria-label="recipe ingredients, one per line"
+            required
+          ></textarea>
+        </p>
         <ImagePicker label="Image" name="image" />
       </fieldset>
       {state.status === "error" && (

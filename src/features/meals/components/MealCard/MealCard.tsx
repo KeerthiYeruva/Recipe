@@ -6,7 +6,16 @@ import type { Meal } from "../../types/meal.types";
 import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
 import styles from "./meal-card.module.scss";
 
-export function MealCard({ title, slug, image, category, prep_time, difficulty }: Meal) {
+export function MealCard({
+  title,
+  slug,
+  image,
+  category,
+  prep_time,
+  servings,
+  difficulty,
+  calories,
+}: Meal) {
   const badge = prep_time <= 10 ? "Quick" : difficulty === "Easy" ? "Easy" : "New";
 
   return (
@@ -37,8 +46,16 @@ export function MealCard({ title, slug, image, category, prep_time, difficulty }
               <dd>{prep_time} min</dd>
             </div>
             <div>
+              <dt>Serves</dt>
+              <dd>{servings}</dd>
+            </div>
+            <div>
               <dt>Level</dt>
               <dd>{difficulty}</dd>
+            </div>
+            <div>
+              <dt>Energy</dt>
+              <dd>{calories} kcal</dd>
             </div>
           </dl>
           <span className={styles.cardCta}>Open recipe</span>
