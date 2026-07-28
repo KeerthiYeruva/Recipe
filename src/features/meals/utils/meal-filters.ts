@@ -33,10 +33,7 @@ export function filterMeals(
   return filtered;
 }
 
-export function filterByQuickFilter(
-  meals: Meal[],
-  quickFilter: MealQuickFilter
-): Meal[] {
+export function filterByQuickFilter(meals: Meal[], quickFilter: MealQuickFilter): Meal[] {
   if (quickFilter === "under-10") {
     return meals.filter((meal) => meal.prep_time <= 10);
   }

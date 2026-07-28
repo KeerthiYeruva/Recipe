@@ -45,9 +45,7 @@ export function MealsExplorer({ meals, initialCategory }: MealsExplorerProps) {
     selectedCategory !== "All"
       ? { key: "category", label: `Category: ${selectedCategory}` }
       : null,
-    selectedQuickFilter
-      ? { key: "quick", label: selectedQuickFilter.label }
-      : null,
+    selectedQuickFilter ? { key: "quick", label: selectedQuickFilter.label } : null,
   ].filter(
     (value): value is { key: "search" | "category" | "quick"; label: string } =>
       value !== null
